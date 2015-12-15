@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{StaticResource background}">
 
-    <Grid x:Name="HomeDialog" Background="{StaticResource background}">
+    <Grid x:Name="HomeDialog">
         <TextBlock FontSize="30" TextAlignment="Center" x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Travel Lists" VerticalAlignment="Top" Height="31" Width="380" SelectionChanged="textBlock_SelectionChanged"/>
         <ListView x:Name="listView" HorizontalAlignment="Left" Height="584" Margin="10,46,0,0" VerticalAlignment="Top" Width="380">
             <ListView BorderThickness="1" BorderBrush="Gray" x:Name="newList" Height="195" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="newList_SelectionChanged">
