@@ -7,7 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource background}">
 
-    <Grid>
+    <Grid x:Name="NewListView" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,18,0,18">
+            <TextBlock Text="New List" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
+        </StackPanel>
+
+        <Grid HorizontalAlignment="Left" Height="554" Margin="10,10.167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="390">
+            <TextBlock x:Name="tbName" Margin="0,26,0,0" TextWrapping="Wrap" Text="Name:" Height="34" FontFamily="Arial" FontSize="24" HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"/>
+            <TextBox x:Name="tfName" HorizontalAlignment="Right" Margin="0,26,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255" Height="33" Background="Transparent" Foreground="White"/>
+            <TextBlock x:Name="tbLocation" Margin="0,65,0,0" TextWrapping="Wrap" Text="Location:" Height="34" FontFamily="Arial" FontSize="24" HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"/>
+            <TextBox x:Name="tfLocation" Margin="125,65,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="33" Background="Transparent" Foreground="White" d:LayoutOverrides="LeftPosition, RightPosition"/>
+            <TextBlock x:Name="tbStartDate" Margin="0,104,0,0" TextWrapping="Wrap" Text="Start date:" Height="34" FontFamily="Arial" FontSize="24" HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"/>
+            <TextBox x:Name="tfStartDate" HorizontalAlignment="Right" Margin="0,104,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255" Height="33" Background="Transparent" Foreground="White"/>
+            <TextBlock x:Name="tbEndDate" Margin="0,143,0,0" TextWrapping="Wrap" Text="End date:" Height="34" FontFamily="Arial" FontSize="24" HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"/>
+            <TextBox x:Name="tfEndDate" HorizontalAlignment="Right" Margin="0,143,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255" Height="33" Background="Transparent" Foreground="White"/>
+
+
+            <ListView x:Name="listView" Margin="46,228,46,60" BorderBrush="White" BorderThickness="2"/>
+
+        </Grid>
 
     </Grid>
+
 </Page>
