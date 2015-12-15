@@ -27,7 +27,7 @@ namespace G10TravelService.Controllers
         }
 
         // GET tables/ListItem
-        public IQueryable<ListItem> GetAllTodoItems()
+        public IQueryable<ListItem> GetAllListItems()
         {
             var currentUser = User as ServiceUser;
             return Query().Where(list => list.UserId == currentUser.Id);
@@ -45,10 +45,14 @@ namespace G10TravelService.Controllers
         }
 
         // POST tables/ListItem
-        public async Task<IHttpActionResult> PostListItem(ListItem item)
+        public async Task<IHttpActionResult> PostListItem(ListItem item, List<TodoItem> items)
         {
             var currentUser = User as ServiceUser;
             item.UserId = currentUser.Id;
+            items.ForEach(delegate (TodoItem todoItem)
+            {
+                item.itemsToBring.Add(todoItem.Id);
+            });
             ListItem current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }

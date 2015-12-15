@@ -7,6 +7,7 @@ using Microsoft.WindowsAzure.Mobile.Service;
 using G10TravelService.DataObjects;
 using G10TravelService.Models;
 using Microsoft.WindowsAzure.Mobile.Service.Security;
+using System.Collections.Generic;
 
 namespace G10TravelService.Controllers
 {
@@ -20,12 +21,11 @@ namespace G10TravelService.Controllers
             DomainManager = new EntityDomainManager<TodoItem>(context, Request, Services);
         }
 
-        // GET tables/TodoItem
-        public IQueryable<TodoItem> GetAllTodoItems()
+        // GET tables/TodoItem/listid
+        public IQueryable<TodoItem> GetAllTodoItems(string listId)
         {
             var currentUser = User as ServiceUser;
-
-            return Query().Where(todo => todo.UserId == currentUser.Id);
+            return Query().Where(todo => todo.UserId == currentUser.Id & todo.ListId == listId);
         }
 
         // GET tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
@@ -41,10 +41,11 @@ namespace G10TravelService.Controllers
         }
 
         // POST tables/TodoItem
-        public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
+        public async Task<IHttpActionResult> PostTodoItem(TodoItem item, ListItem list)
         {
             var currentUser = User as ServiceUser;
             item.UserId = currentUser.Id;
+            item.ListId = list.Id;
             TodoItem current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }

@@ -35,5 +35,15 @@ namespace G10Travel.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+        private void btnAddList_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddListItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

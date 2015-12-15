@@ -13,6 +13,6 @@ namespace G10TravelService.DataObjects
         public string Location { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
-        public List<TodoItem> itemsToBring { get; set; }
+        public List<string> itemsToBring { get; set; }
     }
 }
