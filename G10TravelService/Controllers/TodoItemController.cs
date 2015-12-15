@@ -6,9 +6,11 @@ using System.Web.Http.OData;
 using Microsoft.WindowsAzure.Mobile.Service;
 using G10TravelService.DataObjects;
 using G10TravelService.Models;
+using Microsoft.WindowsAzure.Mobile.Service.Security;
 
 namespace G10TravelService.Controllers
 {
+    [AuthorizeLevel(AuthorizationLevel.User)]
     public class TodoItemController : TableController<TodoItem>
     {
         protected override void Initialize(HttpControllerContext controllerContext)

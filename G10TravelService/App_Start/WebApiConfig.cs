@@ -5,6 +5,7 @@ using System.Web.Http;
 using Microsoft.WindowsAzure.Mobile.Service;
 using G10TravelService.DataObjects;
 using G10TravelService.Models;
+using G10TravelService.Providers;
 
 namespace G10TravelService
 {
@@ -14,7 +15,7 @@ namespace G10TravelService
         {
             // Use this class to set configuration options for your mobile service
             ConfigOptions options = new ConfigOptions();
-
+            options.LoginProviders.Add(typeof(CustomLoginProvider));
             // Use this class to set WebAPI configuration options
             HttpConfiguration config = ServiceConfig.Initialize(new ConfigBuilder(options));
 
