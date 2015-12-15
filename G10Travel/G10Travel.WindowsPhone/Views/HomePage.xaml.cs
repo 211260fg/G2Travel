@@ -24,7 +24,7 @@ namespace G10Travel.Views
     {
         public HomePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
