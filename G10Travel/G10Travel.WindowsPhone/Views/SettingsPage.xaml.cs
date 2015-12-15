@@ -20,11 +20,11 @@ namespace G10Travel.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class HomePage : Page
+    public sealed partial class SettingsPage : Page
     {
-        public HomePage()
+        public SettingsPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         /// <summary>
@@ -34,21 +34,6 @@ namespace G10Travel.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        }
-
-        private void newList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Frame.Navigate(typeof(NewListPage));
-        }
-
-        private void myLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Frame.Navigate(typeof(MyListsPage));
-        }
-
-        private void settings_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Frame.Navigate(typeof(SettingsPage));
         }
     }
 }
