@@ -8,5 +8,6 @@
             <GradientStop Color="#FF010837" Offset="0"/>
             <GradientStop Color="#FF0519A9" Offset="1"/>
         </LinearGradientBrush>
+        <SolidColorBrush x:Key="selectionHighlight" Color="#FF0093FF"/>
     </Application.Resources>
 </Application>
