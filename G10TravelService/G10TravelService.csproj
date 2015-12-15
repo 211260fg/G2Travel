@@ -189,6 +189,7 @@
     <Compile Include="Controllers\CustomLoginController.cs" />
     <Compile Include="Controllers\CustomLoginResult.cs" />
     <Compile Include="Controllers\CustomRegistrationController.cs" />
+    <Compile Include="Controllers\ListItemController.cs" />
     <Compile Include="Controllers\LoginRequest.cs" />
     <Compile Include="Controllers\RegistrationRequest.cs" />
     <Compile Include="Controllers\TodoItemController.cs" />
