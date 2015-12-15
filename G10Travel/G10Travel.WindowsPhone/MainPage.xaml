@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LoginDialog" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -33,20 +33,14 @@
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource BodyTextBlockStyle}" Text="Enter some text below and click Save to insert a new TodoItem item into your database" TextWrapping="Wrap"/>
-            <TextBox Grid.Row="1" Grid.Column="0" Name="TextInput" Text="" />
-            <Button Grid.Row ="1" Grid.Column="1" Name="ButtonSave" Click="ButtonSave_Click" IsEnabled="False" Margin="10, 0, 0, 0">Save</Button>
-            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource BodyTextBlockStyle}" Text="Click refresh below to load the unfinished TodoItems from your database. Use the checkbox to complete and update your TodoItems" TextWrapping="Wrap"/>
-            <Button Grid.Row="3" Grid.ColumnSpan="2" Name="ButtonRefresh" Click="ButtonRefresh_Click" HorizontalAlignment="Stretch">Refresh</Button>
-            <ListView  Grid.Row="4" Grid.ColumnSpan="2" Name="ListItems">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Complete, Mode=TwoWay}" Checked="CheckBoxComplete_Checked" Content="{Binding Text}" Margin="10,5" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <TextBlock Name="loginMessage" />
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Username:" Height="13" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="344"/>
+            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,13.5,0,0" TextWrapping="Wrap" Text="Password:" Height="13" VerticalAlignment="Top" Grid.Row="4"/>
+            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="10,36.5,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="344" Grid.Row="4"/>
+            <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Stretch" Margin="10,92.5,60.5,0" Grid.Row="4" VerticalAlignment="Top" Click="btnRegister_Click"/>
+            <Button x:Name="btnLogin" Grid.ColumnSpan="2" Content="Login" HorizontalAlignment="Left" Margin="187,92.5,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="0.474,1.569" Width="164" Click="btnLogin_Click"/>
+
         </Grid>
     </Grid>
 </Page>

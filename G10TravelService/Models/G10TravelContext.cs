@@ -21,6 +21,8 @@ namespace G10TravelService.Models
         // Web.config, is the same as the service name when hosted in Azure.
         private const string connectionStringName = "Name=MS_TableConnectionString";
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<TodoItem> todoItems { get; set; }
+        public DbSet<ListItem> Items { get; set; }
 
         public G10TravelContext() : base(connectionStringName)
         {

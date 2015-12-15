@@ -193,6 +193,7 @@
     <Compile Include="Controllers\RegistrationRequest.cs" />
     <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="DataObjects\Account.cs" />
+    <Compile Include="DataObjects\ListItem.cs" />
     <Compile Include="Providers\CustomLoginProvider.cs" />
     <Compile Include="Providers\CustomLoginProviderUtils.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />

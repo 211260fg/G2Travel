@@ -18,8 +18,6 @@ namespace G10Travel
 {
     sealed partial class MainPage: Page
     {
-        private MobileServiceCollection<TodoItem, TodoItem> items;
-        private IMobileServiceTable<TodoItem> todoTable = App.MobileService.GetTable<TodoItem>();
         //private IMobileServiceSyncTable<TodoItem> todoTable = App.MobileService.GetSyncTable<TodoItem>(); // offline sync
 
         public MainPage()
@@ -27,81 +25,43 @@ namespace G10Travel
             this.InitializeComponent();
         }
 
-        private async Task InsertTodoItem(TodoItem todoItem)
-        {
-            // This code inserts a new TodoItem into the database. When the operation completes
-            // and Mobile Services has assigned an Id, the item is added to the CollectionView
-            await todoTable.InsertAsync(todoItem);
-            items.Add(todoItem);
+        // Define a member variable for storing the signed-in user. 
+        private MobileServiceUser user;
 
-            //await SyncAsync(); // offline sync
+        // Define a method that performs the authentication process
+        // using a Facebook sign-in. 
+        private async Task<MobileServiceUser> AuthenticateAsync(String username, String password)
+        {
+            var user = await App.MobileService
+       .InvokeApiAsync<LoginRequest, MobileServiceUser>(
+       "CustomLogin", new LoginRequest()
+       {
+           username = username,
+           password = password
+       });
+
+            return user;
+
         }
 
-        private async Task RefreshTodoItems()
+        private async Task<MobileServiceUser> RegisterAsync(String username, String password)
         {
-            MobileServiceInvalidOperationException exception = null;
-            try
-            {
-                // This code refreshes the entries in the list view by querying the TodoItems table.
-                // The query excludes completed TodoItems
-                items = await todoTable
-                    .Where(todoItem => todoItem.Complete == false)
-                    .ToCollectionAsync();
-            }
-            catch (MobileServiceInvalidOperationException e)
-            {
-                exception = e;
-            }
+            var user = await App.MobileService
+       .InvokeApiAsync<RegistrationRequest, MobileServiceUser>(
+       "CustomRegistration", new RegistrationRequest()
+       {
+           username = username,
+           password = password
+       });
 
-            if (exception != null)
-            {
-                await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
-            }
-            else
-            {
-                ListItems.ItemsSource = items;
-                this.ButtonSave.IsEnabled = true;
-            }
-        }
+            return user;
 
-        private async Task UpdateCheckedTodoItem(TodoItem item)
-        {
-            // This code takes a freshly completed TodoItem and updates the database. When the MobileService 
-            // responds, the item is removed from the list 
-            await todoTable.UpdateAsync(item);
-            items.Remove(item);
-            ListItems.Focus(Windows.UI.Xaml.FocusState.Unfocused);
-
-            //await SyncAsync(); // offline sync
-        }
-
-        private async void ButtonRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonRefresh.IsEnabled = false;
-
-            //await SyncAsync(); // offline sync
-            await RefreshTodoItems();
-
-            ButtonRefresh.IsEnabled = true;
-        }
-
-        private async void ButtonSave_Click(object sender, RoutedEventArgs e)
-        {
-            var todoItem = new TodoItem { Text = TextInput.Text };
-            await InsertTodoItem(todoItem);
-        }
-
-        private async void CheckBoxComplete_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckBox cb = (CheckBox)sender;
-            TodoItem item = cb.DataContext as TodoItem;
-            await UpdateCheckedTodoItem(item);
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             //await InitLocalStoreAsync(); // offline sync
-            await RefreshTodoItems();
+            //await RefreshTodoItems();
         }
 
         #region Offline sync
