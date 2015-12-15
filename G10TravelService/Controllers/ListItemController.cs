@@ -17,11 +17,20 @@ namespace G10TravelService.Controllers
     [AuthorizeLevel(AuthorizationLevel.User)]
     public class ListItemController : TableController<ListItem>
     {
+        public IServiceTokenHandler handler { get; set; }
+        private G10TravelContext context;
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            G10TravelContext context = new G10TravelContext();
+            context = new G10TravelContext();
             DomainManager = new EntityDomainManager<ListItem>(context, Request, Services);
+        }
+
+        // GET tables/ListItem
+        public IQueryable<ListItem> GetAllTodoItems()
+        {
+            var currentUser = User as ServiceUser;
+            return Query().Where(list => list.UserId == currentUser.Id);
         }
         // GET tables/ListItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public SingleResult<ListItem> Get(string id)
@@ -38,6 +47,8 @@ namespace G10TravelService.Controllers
         // POST tables/ListItem
         public async Task<IHttpActionResult> PostListItem(ListItem item)
         {
+            var currentUser = User as ServiceUser;
+            item.UserId = currentUser.Id;
             ListItem current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }

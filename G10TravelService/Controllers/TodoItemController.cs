@@ -23,7 +23,9 @@ namespace G10TravelService.Controllers
         // GET tables/TodoItem
         public IQueryable<TodoItem> GetAllTodoItems()
         {
-            return Query();
+            var currentUser = User as ServiceUser;
+
+            return Query().Where(todo => todo.UserId == currentUser.Id);
         }
 
         // GET tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
@@ -41,6 +43,8 @@ namespace G10TravelService.Controllers
         // POST tables/TodoItem
         public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
         {
+            var currentUser = User as ServiceUser;
+            item.UserId = currentUser.Id;
             TodoItem current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
