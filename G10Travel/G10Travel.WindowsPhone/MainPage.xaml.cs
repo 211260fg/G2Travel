@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.UI.Xaml.Controls;
+using G10Travel.Views;
 
 namespace G10Travel
 {
@@ -21,7 +22,8 @@ namespace G10Travel
                 // then load data from the mobile service.
 
                 App.MobileService.CurrentUser = await AuthenticateAsync(this.txtUsername.Text, txtPassword.Password);
-                
+                Frame.Navigate(typeof(HomePage));
+
             }
             catch (MobileServiceInvalidOperationException ex)
             {
@@ -53,7 +55,7 @@ namespace G10Travel
                 // then load data from the mobile service.
 
                 App.MobileService.CurrentUser = await RegisterAsync(this.txtUsername.Text, txtPassword.Password);
-
+                Frame.Navigate(typeof(HomePage));
             }
             catch (MobileServiceInvalidOperationException ex)
             {

@@ -58,7 +58,7 @@ namespace G10Travel
 
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //await InitLocalStoreAsync(); // offline sync
             //await RefreshTodoItems();
