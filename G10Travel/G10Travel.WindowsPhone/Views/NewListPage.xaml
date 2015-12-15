@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,18,0,18">
-            <TextBlock Text="New List" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
+            <TextBlock Text="New List" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="White" SelectionHighlightColor="White"/>
         </StackPanel>
 
         <Grid HorizontalAlignment="Left" Height="554" Margin="10,10.167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="390">
