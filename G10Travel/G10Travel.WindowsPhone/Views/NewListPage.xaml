@@ -17,6 +17,8 @@
             <TextBlock Text="New List" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
         </StackPanel>
 
+        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="574" Margin="0,0.167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="400"/>
+        
         <Grid HorizontalAlignment="Left" Height="554" Margin="10,10.167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="390">
             <TextBlock x:Name="tbName" Margin="0,26,0,0" TextWrapping="Wrap" Text="Name:" Height="34" FontFamily="Arial" FontSize="24" HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"/>
             <TextBox x:Name="tfName" HorizontalAlignment="Right" Margin="0,26,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255" Height="33" Background="Transparent" Foreground="White"/>
@@ -30,13 +32,14 @@
             <TextBlock x:Name="textBlock" Margin="46,203,291,0" TextWrapping="Wrap" Text="Items:" VerticalAlignment="Top" FontSize="18.667" HorizontalAlignment="Center" FontFamily="Arial" Width="53" Height="25"/>
 
             <ListView x:Name="lvItemList" Margin="46,228,46,93" BorderBrush="White" BorderThickness="2" RenderTransformOrigin="0.486,0.427">
-                <Button x:Name="btnAddListItem" Content="+" FontSize="24" Height="61" Width="45" VerticalAlignment="Top" Background="White" Foreground="Black" BorderBrush="Black" MinWidth="10" MinHeight="10" Margin="4"/>
+                <Button x:Name="btnAddListItem" Content="+" FontSize="24" Height="61" Width="45" VerticalAlignment="Top" Background="White" Foreground="Black" BorderBrush="Black" MinWidth="10" MinHeight="10" Margin="4" Click="btnAddListItem_click"/>
             </ListView>
 
             <Button x:Name="btnAddList" Content="Add list" HorizontalAlignment="Left" Height="48" Margin="72,481,0,0" VerticalAlignment="Top" Width="233"/>
 
 
         </Grid>
+        
 
     </Grid>
 
