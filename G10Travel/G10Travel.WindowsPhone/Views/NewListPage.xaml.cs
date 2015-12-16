@@ -3,6 +3,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -27,6 +28,9 @@ namespace G10Travel.Views
     /// </summary>
     public sealed partial class NewListPage : Page
     {
+
+        //private ObservableCollection<string> myItemsList;
+
         public NewListPage()
         {
             this.InitializeComponent();
@@ -39,16 +43,17 @@ namespace G10Travel.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //myItemsList = new ObservableCollection<String>();
         }
 
-        private async Task addList(string name, string location, string startdate, string enddate)
+        private async Task addList(string name, string location, string startdate, string enddate, ItemCollection items)
         {
             var newList = new JObject();
             newList.Add("name", name);
             newList.Add("location", location);
             newList.Add("startdate", startdate);
             newList.Add("enddate", enddate);
-            newList.Add("itemstobring", "");
+            newList.Add("itemstobring", items.ToString());
 
             JToken jToken = JToken.FromObject(newList);
 
@@ -56,15 +61,41 @@ namespace G10Travel.Views
         }
 
 
-        private void btnAddListItem_Click(object sender, RoutedEventArgs e)
+        private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
+            AddItemDialog d = new AddItemDialog();
 
+           await d.ShowAsync();
+
+            /*myItemsList.Add("paraplu");
+            myItemsList.Add("aaa");
+            myItemsList.Add("bbbb");*/
+            //lvItemList.ItemsSource = myItemsList;
+
+            if (d.IsResultOK())
+            {
+                String name = d.GetItemName();
+                lvItemList.Items.Add(name);
+            }
         }
 
         private async void btnAddList_Click_1(object sender, RoutedEventArgs e)
         {
-            var currentUser = App.MobileService.CurrentUser;
-            await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text);
+            try {
+                var currentUser = App.MobileService.CurrentUser;
+                
+                await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, lvItemList.Items);
+                Frame.Navigate(typeof(HomePage));
+            }
+            catch (ArgumentException ex)
+            {
+                tbError.Text = "Geef een geldige waarde in";
+            }
+            catch(MobileServiceInvalidOperationException ex)
+            {
+                tbError.Text = "Geef een geldige waarde in";
+            }
         }
+        
     }
 }
