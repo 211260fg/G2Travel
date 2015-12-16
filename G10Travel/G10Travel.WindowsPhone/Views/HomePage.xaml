@@ -14,19 +14,28 @@
             <ListView.Background>
                 <ImageBrush Stretch="Fill"/>
             </ListView.Background>
-            <ListView BorderThickness="1" BorderBrush="Gray" x:Name="newList" Height="195" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="newList_SelectionChanged">
+            <ListView BorderThickness="1" x:Name="newList" Height="120" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="newList_SelectionChanged" Margin="0,55,0,0" Foreground="White">
                 <ListView.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Images/world.png"/>
+                    <ImageBrush ImageSource="ms-appx:///Images/add_list.png" Stretch="Uniform"/>
                 </ListView.Background>
-                <TextBlock FontSize="20" x:Name="txtNewList" TextWrapping="Wrap" Text="New List"/>
+                <TextBlock FontSize="24" x:Name="txtNewList" TextWrapping="Wrap" Text="New List"/>
             </ListView>
-            <ListView BorderThickness="1" BorderBrush="Gray" x:Name="myLists" Height="195" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="myLists_SelectionChanged">
-                <TextBlock FontSize="20" x:Name="txtMyLists" TextWrapping="Wrap" Text="My Lists"/>
+            <ListView BorderThickness="1" x:Name="myLists" Height="120" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="myLists_SelectionChanged" Margin="0,55,0,0" Foreground="White">
+                <ListView.Background>
+                    <ImageBrush ImageSource="ms-appx:///Images/lists.png" Stretch="Uniform"/>
+                </ListView.Background>
+                <TextBlock FontSize="24" x:Name="txtMyLists" TextWrapping="Wrap" Text="My Lists"/>
             </ListView>
-            <ListView BorderThickness="1" BorderBrush="Gray" x:Name="settings" Height="195" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="settings_SelectionChanged">
-                <TextBlock FontSize="20" x:Name="txtSettings" TextWrapping="Wrap" Text="Settings"/>
+            <ListView BorderThickness="1" x:Name="settings" Height="120" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="settings_SelectionChanged" Margin="0,55,0,0">
+                <ListView.Foreground>
+                    <ImageBrush Stretch="Uniform"/>
+                </ListView.Foreground>
+                <ListView.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="ms-appx:///Images/settings.png"/>
+                </ListView.Background>
+                <TextBlock FontSize="24" x:Name="txtSettings" TextWrapping="Wrap" Text="Settings" Foreground="White"/>
             </ListView>
         </ListView>
-        
+
     </Grid>
 </Page>
