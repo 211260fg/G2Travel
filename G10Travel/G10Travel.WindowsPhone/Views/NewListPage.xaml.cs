@@ -1,4 +1,5 @@
-﻿using G10Travel.Requests;
+﻿using G10Travel.DataModel;
+using G10Travel.Requests;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json.Linq;
 using System;
@@ -27,6 +28,7 @@ namespace G10Travel.Views
     /// </summary>
     public sealed partial class NewListPage : Page
     {
+        private IMobileServiceTable<ListItem> listItemTable = App.MobileService.GetTable<ListItem>();
         public NewListPage()
         {
             this.InitializeComponent();
@@ -41,18 +43,25 @@ namespace G10Travel.Views
         {
         }
 
-        private async Task addList(string name, string location, string startdate, string enddate)
+        private async Task addList(string name, string location, string startdate, string enddate, List<string> itemstobring)
         {
-            var newList = new JObject();
-            newList.Add("name", name);
-            newList.Add("location", location);
-            newList.Add("startdate", startdate);
-            newList.Add("enddate", enddate);
-            newList.Add("itemstobring", "");
-
-            JToken jToken = JToken.FromObject(newList);
-
-            await App.MobileService.InvokeApiAsync("Tables", jToken, HttpMethod.Post, new Dictionary<string, string>() { { "name", "name" } });
+            string message;
+            var listItem = new ListItem();
+            listItem.Name = name;
+            listItem.Location = location;
+            listItem.startDate = DateTime.ParseExact(startdate, "dd-MM-yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture); 
+            listItem.endDate = DateTime.ParseExact(enddate, "dd-MM-yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            listItem.itemsToBring = itemstobring;
+            try
+            {
+                await listItemTable.InsertAsync(listItem);
+            } catch(Exception ex)
+            {
+                message = ex.Message;
+            }
+            
         }
 
 
@@ -64,7 +73,8 @@ namespace G10Travel.Views
         private async void btnAddList_Click_1(object sender, RoutedEventArgs e)
         {
             var currentUser = App.MobileService.CurrentUser;
-            await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text);
+            List<string> itemstobring = new List<string>();
+            await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, itemstobring);
         }
     }
 }

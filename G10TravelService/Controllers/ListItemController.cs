@@ -46,19 +46,11 @@ namespace G10TravelService.Controllers
         }
 
         // POST tables/ListItem
-        public async Task<IHttpActionResult> PostListItem(ListItemRequest request)
+        public async Task<IHttpActionResult> PostListItem(ListItem item)
         {
             var currentUser = User as ServiceUser;
-            ListItem newItem = new ListItem();
-            newItem.Name = request.name;
-            newItem.Location = request.location;
-            newItem.startDate = DateTime.ParseExact(request.startdate, "dd-MM-yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-            newItem.endDate = DateTime.ParseExact(request.enddate, "dd-MM-yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-            newItem.itemsToBring = request.itemstobring.ToList();
-            newItem.UserId = currentUser.Id;
-            ListItem current = await InsertAsync(newItem);
+            item.UserId = currentUser.Id;
+            ListItem current = await InsertAsync(item);
             return CreatedAtRoute("ListItem", new { id = current.Id }, current);
         }
 

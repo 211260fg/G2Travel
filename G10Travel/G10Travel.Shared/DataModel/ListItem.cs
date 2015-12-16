@@ -17,6 +17,6 @@ namespace G10Travel.DataModel
         [JsonProperty(PropertyName = "enddate")]
         public DateTime endDate { get; set; }
         [JsonProperty(PropertyName = "itemstobring")]
-        public List<TodoItem> itemsToBring { get; set; }
+        public List<string> itemsToBring { get; set; }
     }
 }
