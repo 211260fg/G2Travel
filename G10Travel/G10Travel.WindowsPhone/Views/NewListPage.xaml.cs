@@ -1,8 +1,13 @@
-﻿using System;
+﻿using G10Travel.Requests;
+using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -35,15 +40,31 @@ namespace G10Travel.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-
-        private void btnAddList_Click(object sender, RoutedEventArgs e)
+        
+        private async Task addList(string name, string location, string startdate, string enddate)
         {
+            var newList = new JObject();
+            newList.Add("name", name);
+            newList.Add("location", location);
+            newList.Add("startdate", startdate);
+            newList.Add("enddate", enddate);
+            newList.Add("itemstobring", "");
 
+            JToken jToken = JToken.FromObject(newList);
+
+            await App.MobileService.InvokeApiAsync("Tables", jToken, HttpMethod.Post, new Dictionary<string, string>() { { "name", "name" } });
         }
+
 
         private void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private async void btnAddList_Click_1(object sender, RoutedEventArgs e)
+        {
+            var currentUser = App.MobileService.CurrentUser;
+            await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text);
         }
     }
 }

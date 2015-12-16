@@ -33,7 +33,7 @@
                 <Button x:Name="btnAddListItem" Content="+" FontSize="24" Height="61" Width="45" VerticalAlignment="Top" Background="White" Foreground="Black" BorderBrush="Black" MinWidth="10" MinHeight="10" Margin="4"/>
             </ListView>
 
-            <Button x:Name="btnAddList" Content="Add list" HorizontalAlignment="Left" Height="48" Margin="72,481,0,0" VerticalAlignment="Top" Width="233"/>
+            <Button x:Name="btnAddList" Content="Add list" HorizontalAlignment="Left" Height="48" Margin="72,481,0,0" VerticalAlignment="Top" Width="233" Click="btnAddList_Click_1"/>
 
 
         </Grid>

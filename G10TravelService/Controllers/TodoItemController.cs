@@ -47,7 +47,7 @@ namespace G10TravelService.Controllers
             item.UserId = currentUser.Id;
             item.ListId = list.Id;
             TodoItem current = await InsertAsync(item);
-            return CreatedAtRoute("Tables", new { id = current.Id }, current);
+            return CreatedAtRoute("TodoItem", new { id = current.Id }, current);
         }
 
         // DELETE tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
