@@ -50,5 +50,10 @@ namespace G10Travel.Views
         {
             Frame.Navigate(typeof(SettingsPage));
         }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

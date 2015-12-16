@@ -14,5 +14,6 @@ namespace G10TravelService.DataObjects
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
         public List<string> itemsToBring { get; set; }
+        public bool Done { get; set; }
     }
 }

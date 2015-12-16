@@ -17,13 +17,13 @@
                 <ListView.Background>
                     <ImageBrush ImageSource="ms-appx:///Images/add_list.png" Stretch="Uniform"/>
                 </ListView.Background>
-                <TextBlock FontSize="24" x:Name="txtNewList" TextWrapping="Wrap" Text="New List"/>
+                <TextBlock FontSize="32" x:Name="txtNewList" TextWrapping="Wrap" Text="New List" FontFamily="Bauhaus 93"/>
             </ListView>
             <ListView BorderThickness="1" x:Name="myLists" Height="120" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="myLists_SelectionChanged" Margin="0,55,0,0" Foreground="White">
                 <ListView.Background>
                     <ImageBrush ImageSource="ms-appx:///Images/lists.png" Stretch="Uniform"/>
                 </ListView.Background>
-                <TextBlock FontSize="24" x:Name="txtMyLists" TextWrapping="Wrap" Text="My Lists"/>
+                <TextBlock FontSize="32" x:Name="txtMyLists" TextWrapping="Wrap" Text="My Lists" FontFamily="Bauhaus 93"/>
             </ListView>
             <ListView BorderThickness="1" x:Name="settings" Height="120" Width="380" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="settings_SelectionChanged" Margin="0,55,0,0">
                 <ListView.Foreground>
@@ -32,9 +32,10 @@
                 <ListView.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="ms-appx:///Images/settings.png"/>
                 </ListView.Background>
-                <TextBlock FontSize="24" x:Name="txtSettings" TextWrapping="Wrap" Text="Settings" Foreground="White"/>
+                <TextBlock FontSize="32" x:Name="txtSettings" TextWrapping="Wrap" Text="Settings" Foreground="White" FontFamily="Bauhaus 93"/>
             </ListView>
         </ListView>
+        <Button x:Name="btnLogout" Content="Log out" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="56" Click="btnLogout_Click"/>
 
     </Grid>
 </Page>
