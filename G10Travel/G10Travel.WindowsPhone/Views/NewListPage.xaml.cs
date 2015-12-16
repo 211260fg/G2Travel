@@ -49,7 +49,7 @@ namespace G10Travel.Views
         private async Task addList(string name, string location, string startdate, string enddate, List<string> itemstobring)
         {
             string message;
-            ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate, itemsToBring = itemstobring, Id = "test"};
+            ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate, itemsToBring = itemstobring};
             try
             {
                 await listItemTable.InsertAsync(listItem);
@@ -64,7 +64,6 @@ namespace G10Travel.Views
             try
             {
                 var currentUser = App.MobileService.CurrentUser;
-                ItemCollection items = lvItemList.Items;
                 List<string> newItems = lvItemList.Items.Cast<string>().ToList();
                 await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, newItems);
 

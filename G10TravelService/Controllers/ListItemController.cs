@@ -30,8 +30,7 @@ namespace G10TravelService.Controllers
         // GET tables/ListItem
         public IQueryable<ListItem> GetAllListItems()
         {
-            var currentUser = User as ServiceUser;
-            return Query().Where(list => list.UserId == currentUser.Id);
+            return Query();
         }
         // GET tables/ListItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public SingleResult<ListItem> Get(string id)
