@@ -89,9 +89,22 @@ namespace G10Travel.Views
             Frame.Navigate(typeof(HomePage));
         }
 
-        private void btnAddListItem_Click(object sender, RoutedEventArgs e)
+        private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
+            AddItemDialog d = new AddItemDialog();
 
+            await d.ShowAsync();
+
+            /*myItemsList.Add("paraplu");
+            myItemsList.Add("aaa");
+            myItemsList.Add("bbbb");*/
+            //lvItemList.ItemsSource = myItemsList;
+
+            if (d.IsResultOK())
+            {
+                String name = d.GetItemName();
+                lvItemList.Items.Add(name);
+            }
         }
     }
 }
