@@ -47,8 +47,8 @@ namespace G10Travel.Views
         {
             try
             {
-                items = await listItemTable
-                        .ToCollectionAsync();
+                List<ListItem> items = await listItemTable
+                        .ToListAsync();
                 lvMyLists.ItemsSource = items;
             } catch(Exception ex)
             {
