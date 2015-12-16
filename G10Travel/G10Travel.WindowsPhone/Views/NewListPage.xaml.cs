@@ -38,7 +38,7 @@ namespace G10Travel.Views
 
         private void btnAddList_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnAddListItem_Click(object sender, RoutedEventArgs e)
