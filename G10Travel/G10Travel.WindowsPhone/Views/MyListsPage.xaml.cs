@@ -1,4 +1,5 @@
-﻿using System;
+﻿using G10Travel.DataModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,6 +35,14 @@ namespace G10Travel.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private void lvMyLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListView lv = (ListView)sender;
+            ListItem selectedItem = lv.SelectedItem as ListItem;
+            var frame = Window.Current.Content as Frame;
+            frame.Navigate(typeof(ListDetailPage), selectedItem);
         }
     }
 }

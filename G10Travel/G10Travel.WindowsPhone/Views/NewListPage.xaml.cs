@@ -40,7 +40,7 @@ namespace G10Travel.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-        
+
         private async Task addList(string name, string location, string startdate, string enddate)
         {
             var newList = new JObject();
@@ -58,7 +58,7 @@ namespace G10Travel.Views
 
         private void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private async void btnAddList_Click_1(object sender, RoutedEventArgs e)
