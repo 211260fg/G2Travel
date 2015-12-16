@@ -30,6 +30,7 @@ namespace G10Travel.Views
     /// </summary>
     public sealed partial class NewListPage : Page
     {
+        private IMobileServiceTable<ListItem> listItemTable = App.MobileService.GetTable<ListItem>();
         public NewListPage()
         {
             this.InitializeComponent();
@@ -45,18 +46,16 @@ namespace G10Travel.Views
             //myItemsList = new ObservableCollection<String>();
         }
 
-        private async Task addList(string name, string location, string startdate, string enddate, ItemCollection items)
+        private async Task addList(string name, string location, string startdate, string enddate, List<string> itemstobring)
         {
             string message;
             ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate, itemsToBring = itemstobring, Id = "test"};
             try
             {
                 await listItemTable.InsertAsync(listItem);
-                Frame.Navigate(typeof(HomePage));
             } catch(Exception ex)
             {
-                String name = d.GetItemName();
-                lvItemList.Items.Add(name);
+                message = ex.Message;
             }
         }
 
@@ -65,7 +64,9 @@ namespace G10Travel.Views
             try
             {
                 var currentUser = App.MobileService.CurrentUser;
-                await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, lvItemList.Items);
+                ItemCollection items = lvItemList.Items;
+                List<string> newItems = lvItemList.Items.Cast<string>().ToList();
+                await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, newItems);
 
                 Frame.Navigate(typeof(HomePage));
                 ContentDialog cd = new ContentDialog()
