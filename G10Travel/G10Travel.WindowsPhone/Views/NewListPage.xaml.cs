@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -29,7 +30,6 @@ namespace G10Travel.Views
     /// </summary>
     public sealed partial class NewListPage : Page
     {
-        private IMobileServiceTable<ListItem> listItemTable = App.MobileService.GetTable<ListItem>();
         public NewListPage()
         {
             this.InitializeComponent();
@@ -42,9 +42,10 @@ namespace G10Travel.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //myItemsList = new ObservableCollection<String>();
         }
 
-        private async Task addList(string name, string location, string startdate, string enddate, List<string> itemstobring)
+        private async Task addList(string name, string location, string startdate, string enddate, ItemCollection items)
         {
             string message;
             ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate, itemsToBring = itemstobring, Id = "test"};
@@ -54,22 +55,38 @@ namespace G10Travel.Views
                 Frame.Navigate(typeof(HomePage));
             } catch(Exception ex)
             {
-                message = ex.Message;
+                String name = d.GetItemName();
+                lvItemList.Items.Add(name);
             }
-            
-        }
-
-
-        private void btnAddListItem_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private async void btnAddList_Click_1(object sender, RoutedEventArgs e)
         {
-            var currentUser = App.MobileService.CurrentUser;
-            List<string> itemstobring = new List<string>();
-            await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, itemstobring);
+            try
+            {
+                var currentUser = App.MobileService.CurrentUser;
+                await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, lvItemList.Items);
+
+                Frame.Navigate(typeof(HomePage));
+                ContentDialog cd = new ContentDialog()
+        {
+                    Title = "List added",
+                    Content = this.tfName.Text + " list has been added",
+                    PrimaryButtonText = "OK"
+
+                };
+                await cd.ShowAsync();
+
+        }
+            catch (ArgumentException ex)
+            {
+                tbError.Text = "Geef een geldige waarde in";
+            }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(HomePage));
         }
     }
 }
