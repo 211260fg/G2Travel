@@ -35,11 +35,13 @@ namespace G10Travel.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+             
         }
 
         private void lvMyLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListView lv = (ListView)sender;
+            
             ListItem selectedItem = lv.SelectedItem as ListItem;
             var frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(ListDetailPage), selectedItem);
