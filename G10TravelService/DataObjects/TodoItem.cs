@@ -4,6 +4,8 @@ namespace G10TravelService.DataObjects
 {
     public class TodoItem : EntityData
     {
+        public string UserId { get; set; }
+        public string ListId { get; set; }
         public string Name { get; set; }
 
         public bool Complete { get; set; }

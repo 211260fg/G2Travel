@@ -9,8 +9,6 @@ namespace G10TravelService.DataObjects
     public class Account : EntityData
     {
         public string Username { get; set; }
-
-        public List<ListItem> lists { get; set; }
         public byte[] Salt { get; set; }
         public byte[] SaltedAndHashedPassword { get; set; }
 
