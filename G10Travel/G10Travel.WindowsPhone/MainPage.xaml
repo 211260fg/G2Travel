@@ -21,7 +21,7 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="18,0,18,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="18,0" VerticalAlignment="Center" Height="239">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -35,7 +35,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="loginMessage" />
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" FontFamily="Arial" FontSize="17.333"/>
-            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="344" FontSize="21.333" Grid.RowSpan="4"/>
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="344" FontSize="21.333" Grid.RowSpan="4"/>
             <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,13.5,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Grid.Row="4" FontFamily="Arial" FontSize="17.333"/>
             <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="10,36.5,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="344" Grid.Row="4" FontSize="21.333"/>
             <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Stretch" Margin="10,92.5,60.5,0" Grid.Row="4" VerticalAlignment="Top" Click="btnRegister_Click" Background="#FF232967" FontSize="18.133"/>
