@@ -89,5 +89,10 @@ namespace G10Travel.Views
         {
             Frame.Navigate(typeof(HomePage));
         }
+
+        private void btnAddListItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
