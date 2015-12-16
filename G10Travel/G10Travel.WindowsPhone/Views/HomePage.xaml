@@ -9,7 +9,6 @@
     Background="{StaticResource background}">
 
     <Grid x:Name="HomeDialog">
-        <TextBlock FontSize="30" TextAlignment="Center" x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Travel Lists" VerticalAlignment="Top" Height="31" Width="380"/>
         <ListView x:Name="listView" HorizontalAlignment="Left" Height="584" Margin="10,46,0,0" VerticalAlignment="Center" Width="380">
             <ListView.Background>
                 <ImageBrush Stretch="Fill"/>
