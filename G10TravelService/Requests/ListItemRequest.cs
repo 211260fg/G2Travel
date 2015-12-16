@@ -11,6 +11,6 @@ namespace G10TravelService.Requests
         public String location { get; set; }
         public String startdate { get; set; }
         public String enddate { get; set; }
-        public String[] itemstobring { get; set; }
+        public List<String> itemstobring { get; set; }
     }
 }

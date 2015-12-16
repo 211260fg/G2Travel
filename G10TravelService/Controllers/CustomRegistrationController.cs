@@ -9,6 +9,7 @@ using Microsoft.WindowsAzure.Mobile.Service.Security;
 using System.Text.RegularExpressions;
 using G10TravelService.DataObjects;
 using G10TravelService.Models;
+using G10TravelService.Requests;
 
 namespace G10TravelService.Controllers
 {
