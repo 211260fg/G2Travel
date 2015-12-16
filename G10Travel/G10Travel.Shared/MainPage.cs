@@ -39,7 +39,7 @@ namespace G10Travel
            username = username,
            password = password
        });
-
+            this.user = user;
             return user;
 
         }
@@ -53,7 +53,7 @@ namespace G10Travel
            username = username,
            password = password
        });
-
+            this.user = user;
             return user;
 
         }

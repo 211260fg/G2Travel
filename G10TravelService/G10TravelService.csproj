@@ -190,8 +190,9 @@
     <Compile Include="Controllers\CustomLoginResult.cs" />
     <Compile Include="Controllers\CustomRegistrationController.cs" />
     <Compile Include="Controllers\ListItemController.cs" />
-    <Compile Include="Controllers\LoginRequest.cs" />
-    <Compile Include="Controllers\RegistrationRequest.cs" />
+    <Compile Include="Requests\ListItemRequest.cs" />
+    <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="Requests\RegistrationRequest.cs" />
     <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="DataObjects\Account.cs" />
     <Compile Include="DataObjects\ListItem.cs" />

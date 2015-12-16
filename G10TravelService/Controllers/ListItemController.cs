@@ -11,6 +11,7 @@ using G10TravelService.Models;
 using System.Web.Http.Controllers;
 using System.Threading.Tasks;
 using System.Web.Http.OData;
+using G10TravelService.Requests;
 
 namespace G10TravelService.Controllers
 {
@@ -45,16 +46,20 @@ namespace G10TravelService.Controllers
         }
 
         // POST tables/ListItem
-        public async Task<IHttpActionResult> PostListItem(ListItem item, List<TodoItem> items)
+        public async Task<IHttpActionResult> PostListItem(ListItemRequest request)
         {
             var currentUser = User as ServiceUser;
-            item.UserId = currentUser.Id;
-            items.ForEach(delegate (TodoItem todoItem)
-            {
-                item.itemsToBring.Add(todoItem.Id);
-            });
-            ListItem current = await InsertAsync(item);
-            return CreatedAtRoute("Tables", new { id = current.Id }, current);
+            ListItem newItem = new ListItem();
+            newItem.Name = request.name;
+            newItem.Location = request.location;
+            newItem.startDate = DateTime.ParseExact(request.startdate, "dd-MM-yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            newItem.endDate = DateTime.ParseExact(request.enddate, "dd-MM-yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            newItem.itemsToBring = request.itemstobring.ToList();
+            newItem.UserId = currentUser.Id;
+            ListItem current = await InsertAsync(newItem);
+            return CreatedAtRoute("ListItem", new { id = current.Id }, current);
         }
 
         // DELETE tables/ListItem/48D68C86-6EA6-4C25-AA33-223FC9A27959

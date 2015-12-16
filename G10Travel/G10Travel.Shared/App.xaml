@@ -9,5 +9,6 @@
             <GradientStop Color="#FF0519A9" Offset="1"/>
         </LinearGradientBrush>
         <SolidColorBrush x:Key="selectionHighlight" Color="#FF0093FF"/>
+        <SolidColorBrush x:Key="btnBG" Color="#FF232967"/>
     </Application.Resources>
 </Application>
