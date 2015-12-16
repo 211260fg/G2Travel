@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using G10TravelService.DataObjects;
 using G10TravelService.Models;
 
-namespace G10TravelService.Controllers
+namespace G10TravelService.Requests
 {
     public class RegistrationRequest
     {

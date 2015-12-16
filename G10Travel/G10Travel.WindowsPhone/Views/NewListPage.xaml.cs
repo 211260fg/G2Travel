@@ -2,6 +2,7 @@
 using G10Travel.Requests;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,17 +47,11 @@ namespace G10Travel.Views
         private async Task addList(string name, string location, string startdate, string enddate, List<string> itemstobring)
         {
             string message;
-            var listItem = new ListItem();
-            listItem.Name = name;
-            listItem.Location = location;
-            listItem.startDate = DateTime.ParseExact(startdate, "dd-MM-yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture); 
-            listItem.endDate = DateTime.ParseExact(enddate, "dd-MM-yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-            listItem.itemsToBring = itemstobring;
+            ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate, itemsToBring = itemstobring, Id = "test"};
             try
             {
                 await listItemTable.InsertAsync(listItem);
+                Frame.Navigate(typeof(HomePage));
             } catch(Exception ex)
             {
                 message = ex.Message;

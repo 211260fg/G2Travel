@@ -46,12 +46,18 @@ namespace G10TravelService.Controllers
         }
 
         // POST tables/ListItem
-        public async Task<IHttpActionResult> PostListItem(ListItem item)
+        public async Task<IHttpActionResult> PostListItem(ListItemRequest item)
         {
             var currentUser = User as ServiceUser;
-            item.UserId = currentUser.Id;
-            ListItem current = await InsertAsync(item);
-            return CreatedAtRoute("ListItem", new { id = current.Id }, current);
+            ListItem newItem = new ListItem();
+            newItem.Name = item.name;
+            newItem.Location = item.location;
+            newItem.startDate = item.startdate;
+            newItem.endDate = item.enddate;
+            newItem.itemsToBring = item.itemstobring;
+            newItem.UserId = currentUser.Id;
+            ListItem current = await InsertAsync(newItem);
+            return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
         // DELETE tables/ListItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
