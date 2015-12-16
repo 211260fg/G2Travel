@@ -14,6 +14,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,18,0,18">
+
             <TextBlock Text="New List" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="White" SelectionHighlightColor="White"/>
         </StackPanel>
 
@@ -32,8 +33,9 @@
             <ListBox x:Name="lvItemList" Margin="46,250,46,110" BorderBrush="White" BorderThickness="2" RenderTransformOrigin="0.486,0.427" Background="#CCFFFFFF"/>
             <Button x:Name="btnAddListItem" Content="+" FontSize="24" VerticalAlignment="Stretch" Background="#FFFDFDFD" Foreground="Black" BorderBrush="Black" MinWidth="10" MinHeight="10" RenderTransformOrigin="0.561,0.544" Margin="283,382,54,106" HorizontalAlignment="Stretch" Click="btnAddListItem_Click"/>
 
-            <Button x:Name="btnAddList" Content="Add list" HorizontalAlignment="Left" Height="48" Margin="72,481,0,0" VerticalAlignment="Top" Width="233" Background="{StaticResource btnBG}" Click="btnAddList_Click_1"/>
+            <Button x:Name="btnAddList" Content="Add list" HorizontalAlignment="Left" Height="48" Margin="209,481,0,0" VerticalAlignment="Top" Width="127" Background="{StaticResource btnBG}" Click="btnAddList_Click_1"/>
             <TextBlock x:Name="tbError" HorizontalAlignment="Center" Height="25" Margin="72,461,85,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233"/>
+            <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Height="58" Margin="46,481,0,0" VerticalAlignment="Top" Width="134" Background="{StaticResource btnBG}" Click="btnCancel_Click"/>
 
         </Grid>
 

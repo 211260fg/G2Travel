@@ -82,12 +82,27 @@ namespace G10Travel.Views
             {
                 var currentUser = App.MobileService.CurrentUser;
                 await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, lvItemList.Items);
+                
+                Frame.Navigate(typeof(HomePage));
+                ContentDialog cd = new ContentDialog()
+                {
+                    Title = "List added",
+                    Content = this.tfName.Text + " list has been added",
+                    PrimaryButtonText = "OK"
+
+                };
+                await cd.ShowAsync();
+
             }
             catch (ArgumentException ex)
             {
                 tbError.Text = "Geef een geldige waarde in";
             }
         }
-        
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(HomePage));
+        }
     }
 }
