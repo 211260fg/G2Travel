@@ -1,4 +1,5 @@
-﻿using G10Travel.Requests;
+﻿using G10Travel.DataModel;
+using G10Travel.Requests;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json.Linq;
 using System;
@@ -28,9 +29,6 @@ namespace G10Travel.Views
     /// </summary>
     public sealed partial class NewListPage : Page
     {
-
-        //private ObservableCollection<string> myItemsList;
-
         public NewListPage()
         {
             this.InitializeComponent();
@@ -57,7 +55,6 @@ namespace G10Travel.Views
 
             JToken jToken = JToken.FromObject(newList);
 
-            await App.MobileService.InvokeApiAsync("Tables", jToken, HttpMethod.Post, new Dictionary<string, string>() { { "name", "name" } });
         }
 
 
@@ -81,17 +78,12 @@ namespace G10Travel.Views
 
         private async void btnAddList_Click_1(object sender, RoutedEventArgs e)
         {
-            try {
+            try
+            {
                 var currentUser = App.MobileService.CurrentUser;
-                
                 await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, lvItemList.Items);
-                Frame.Navigate(typeof(HomePage));
             }
             catch (ArgumentException ex)
-            {
-                tbError.Text = "Geef een geldige waarde in";
-            }
-            catch(MobileServiceInvalidOperationException ex)
             {
                 tbError.Text = "Geef een geldige waarde in";
             }
