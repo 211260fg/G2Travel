@@ -13,7 +13,7 @@ namespace G10TravelService.DataObjects
         public string Location { get; set; }
         public string startDate { get; set; }
         public string endDate { get; set; }
-        public ICollection<string> itemsToBring { get; set; }
+        public virtual ICollection<Item> itemsToBring { get; set; }
         public bool Done { get; set; }
     }
 }

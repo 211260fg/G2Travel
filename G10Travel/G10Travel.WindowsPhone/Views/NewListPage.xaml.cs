@@ -46,7 +46,7 @@ namespace G10Travel.Views
             //myItemsList = new ObservableCollection<String>();
         }
 
-        private async Task addList(string name, string location, string startdate, string enddate, List<string> itemstobring)
+        private async Task addList(string name, string location, string startdate, string enddate, List<Item> itemstobring)
         {
             string message;
             ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate, itemsToBring = itemstobring};
@@ -65,7 +65,12 @@ namespace G10Travel.Views
             {
                 var currentUser = App.MobileService.CurrentUser;
                 List<string> newItems = lvItemList.Items.Cast<string>().ToList();
-                await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, newItems);
+                List<Item> itemList = new List<Item>();
+                for(int i = 0; i < newItems.Count; i++)
+                {
+                    Item item = new Item { ItemName = newItems[i]};
+                }
+                await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, itemList);
 
                 Frame.Navigate(typeof(HomePage));
                 ContentDialog cd = new ContentDialog()
