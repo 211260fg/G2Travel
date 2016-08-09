@@ -12,6 +12,6 @@ namespace G10Travel.Requests
         public string location { get; set; }
         public DateTime startdate { get; set; }
         public DateTime enddate { get; set; }
-        public List<string> itemstobring { get; set; }
+        public ICollection<string> itemstobring { get; set; }
     }
 }
