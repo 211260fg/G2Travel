@@ -35,7 +35,7 @@ namespace G10Travel
         // and application key. You're all set to start working with your Mobile Service!
         public static MobileServiceClient MobileService =
          new MobileServiceClient(
-             "https://g9travelservice.azurewebsites.net"
+             "https://g9ts.azurewebsites.net"
          );
 
         /// <summary>
