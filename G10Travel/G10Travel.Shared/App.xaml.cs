@@ -24,6 +24,7 @@ namespace G10Travel
     sealed partial class App : Application
     {
 
+
         // This MobileServiceClient has been configured to communicate with your local
         // test project for debugging purposes.
         //public static MobileServiceClient MobileService = new MobileServiceClient(
@@ -32,10 +33,10 @@ namespace G10Travel
 
         // This MobileServiceClient has been configured to communicate with your Mobile Service's url
         // and application key. You're all set to start working with your Mobile Service!
-        public static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://g10travel.azure-mobile.net/",
-            "pqrgskGHQMjeBXaSghdcKWvmrvlNgn24"
-        );
+        public static MobileServiceClient MobileService =
+         new MobileServiceClient(
+             "https://g9travelservice.azurewebsites.net"
+         );
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
