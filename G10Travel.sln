@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "G10Travel", "G10Travel", "{F6C0526E-9FE6-4B07-B340-243315E431F1}"
 EndProject
@@ -16,8 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G10TravelService", "G10Trav
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		G10Travel\G10Travel.Shared\G10Travel.Shared.projitems*{bd50eca0-7f46-41e1-a407-56821f327b5b}*SharedItemsImports = 4
 		G10Travel\G10Travel.Shared\G10Travel.Shared.projitems*{1bba7382-395f-44d1-9431-813384eab491}*SharedItemsImports = 13
+		G10Travel\G10Travel.Shared\G10Travel.Shared.projitems*{bd50eca0-7f46-41e1-a407-56821f327b5b}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

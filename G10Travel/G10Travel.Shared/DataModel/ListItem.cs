@@ -24,6 +24,6 @@ namespace G10Travel.DataModel
         public string endDate { get; set; }
 
         [JsonProperty(PropertyName = "itemstobring")]
-        public List<string> itemsToBring { get; set; }
+        public virtual ICollection<Item> itemsToBring { get; set; }
     }
 }

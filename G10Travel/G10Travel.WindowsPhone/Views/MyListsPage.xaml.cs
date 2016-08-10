@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -32,6 +33,7 @@ namespace G10Travel.Views
         public MyListsPage()
         {
             this.InitializeComponent();
+            //HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
 
         /// <summary>
@@ -68,5 +70,15 @@ namespace G10Travel.Views
             var frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(ListDetailPage), selectedItem);
         }
+
+        /*void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
+        }*/
+
     }
 }
