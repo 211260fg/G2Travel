@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -47,6 +48,9 @@ namespace G10Travel.Views
         {
             try
             {
+                IEnumerable<string> test = await listItemTable.Where(list => list.Name == "test").Select(list => list.Name).ToEnumerableAsync();
+                Debug.WriteLine(test);
+
                 List<ListItem> items = await listItemTable
                         .ToListAsync();
                 lvMyLists.ItemsSource = items;
