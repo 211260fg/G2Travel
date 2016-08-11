@@ -35,5 +35,6 @@ namespace G10Travel.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
     }
 }

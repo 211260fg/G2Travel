@@ -101,7 +101,15 @@ namespace G10Travel.Views
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(HomePage));
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame != null && rootFrame.CanGoBack)
+            {
+                rootFrame.GoBack();
+            }else
+            {
+                Frame.Navigate(typeof(HomePage));
+            }
         }
 
         private async void btnAddListItem_Click(object sender, RoutedEventArgs e)

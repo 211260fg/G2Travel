@@ -7,6 +7,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using G10Travel.Views;
 
 // To add offline sync support, add the NuGet package Microsoft.WindowsAzure.MobileServices.SQLiteStore
 // to your project. Then, uncomment the lines marked // offline sync
@@ -22,7 +23,7 @@ namespace G10Travel
 
         public MainPage()
         {
-            this.InitializeComponent();
+                this.InitializeComponent();
         }
 
         // Define a member variable for storing the signed-in user. 
