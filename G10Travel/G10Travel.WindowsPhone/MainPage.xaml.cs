@@ -72,21 +72,17 @@ namespace G10Travel
         private void btnFbLogin_click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             //Facebook app id
-            var clientId = "235751480157972";
+            String clientId = "235751480157972";
             //Facebook permissions
-            var scope = "public_profile, email";
+            String scope = "public_profile, email";
 
-            var redirectUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri().ToString();
-            var fb = new FacebookClient();
-            var loginUrl = fb.GetLoginUrl(new
-            {
-                client_id = clientId,
-                redirect_uri = redirectUri,
-                response_type = "token",
-                scope = scope
-            });
+            //var redirectUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri().ToString();
+            String redirectUri = "https://g9ts.azurewebsites.net";
 
-            Uri startUri = loginUrl;
+            String FacebookURL = "https://www.facebook.com/dialog/oauth?client_id=" + Uri.EscapeDataString(clientId) + "&redirect_uri=" + Uri.EscapeDataString(redirectUri) + "&scope=" + Uri.EscapeDataString(scope) + "&display=popup&response_type=token";
+
+            Uri startUri = new Uri(FacebookURL);
+            //Uri startUri = loginUrl;
             Uri endUri = new Uri(redirectUri, UriKind.Absolute);
 
             WebAuthenticationBroker.AuthenticateAndContinue(startUri, endUri, null, WebAuthenticationOptions.None);
