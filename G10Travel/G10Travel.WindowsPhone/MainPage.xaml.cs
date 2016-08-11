@@ -2,6 +2,8 @@
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.UI.Xaml.Controls;
 using G10Travel.Views;
+using Windows.Security.Authentication.Web;
+using Facebook;
 
 namespace G10Travel
 {
@@ -65,6 +67,29 @@ namespace G10Travel
             {
                 ResetLoginUI();
             }
+        }
+
+        private void btnFbLogin_click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            //Facebook app id
+            var clientId = "235751480157972";
+            //Facebook permissions
+            var scope = "public_profile, email";
+
+            var redirectUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri().ToString();
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = clientId,
+                redirect_uri = redirectUri,
+                response_type = "token",
+                scope = scope
+            });
+
+            Uri startUri = loginUrl;
+            Uri endUri = new Uri(redirectUri, UriKind.Absolute);
+
+            WebAuthenticationBroker.AuthenticateAndContinue(startUri, endUri, null, WebAuthenticationOptions.None);
         }
     }
 }
