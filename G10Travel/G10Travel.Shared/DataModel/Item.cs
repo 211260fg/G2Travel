@@ -10,5 +10,8 @@ namespace G10Travel.DataModel
 
         [JsonProperty(PropertyName = "itemname")]
         public string ItemName { get; set; }
+
+        [JsonProperty(PropertyName = "listitemid")]
+        public string ListItemId { get; set; }
     }
 }

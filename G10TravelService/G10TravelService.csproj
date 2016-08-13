@@ -214,6 +214,7 @@
     <Compile Include="Controllers\CustomLoginController.cs" />
     <Compile Include="Controllers\CustomLoginResult.cs" />
     <Compile Include="Controllers\CustomRegistrationController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ListItemController.cs" />
     <Compile Include="DataObjects\Item.cs" />
     <Compile Include="Requests\ListItemRequest.cs" />
