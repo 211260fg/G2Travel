@@ -84,6 +84,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ContinuationManager.cs" />
     <Compile Include="Requests\ListPostRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="MainPage.xaml.cs">

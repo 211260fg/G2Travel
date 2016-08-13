@@ -25,6 +25,8 @@ namespace G10Travel
     sealed partial class App : Application
     {
 
+        public static ContinuationManager ContinuationManager { get; private set; }
+
 
         // This MobileServiceClient has been configured to communicate with your local
         // test project for debugging purposes.
@@ -47,6 +49,7 @@ namespace G10Travel
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            ContinuationManager = new ContinuationManager();
 
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
@@ -63,7 +66,7 @@ namespace G10Travel
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
-        {            
+        {
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -126,6 +129,8 @@ namespace G10Travel
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+            ContinuationManager.MarkAsStale();
+
             deferral.Complete();
         }
         protected override void OnActivated(IActivatedEventArgs args)
@@ -134,9 +139,17 @@ namespace G10Travel
 #if WINDOWS_PHONE_APP
             if (args.Kind == ActivationKind.WebAuthenticationBrokerContinuation)
             {
+
+                var continuationEventArgs = args as IContinuationActivatedEventArgs;
+                if (continuationEventArgs != null)
+                {
+                    ContinuationManager.Continue(continuationEventArgs);
+                    ContinuationManager.MarkAsStale();
+                }
+
                 // Completes the sign-in process started by LoginAsync.
                 // Change 'MobileService' to the name of your MobileServiceClient instance. 
-                App.MobileService.LoginComplete(args as WebAuthenticationBrokerContinuationEventArgs);
+                //App.MobileService.LoginComplete(args as WebAuthenticationBrokerContinuationEventArgs);
             }
 #endif
 
