@@ -32,6 +32,7 @@ namespace G10Travel.Views
     public sealed partial class NewListPage : Page
     {
         private IMobileServiceTable<ListItem> listItemTable = App.MobileService.GetTable<ListItem>();
+        private IMobileServiceTable<Item> ItemTable = App.MobileService.GetTable<Item>();
         public NewListPage()
         {
             this.InitializeComponent();
@@ -49,10 +50,16 @@ namespace G10Travel.Views
 
         private async Task addList(string name, string location, string startdate, string enddate, List<Item> itemstobring)
         {
-            ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate, itemsToBring = itemstobring };
+            ListItem listItem = new ListItem { Name = name, Location = location, startDate = startdate, endDate = enddate };
             //try
             //{
             await listItemTable.InsertAsync(listItem);
+
+            for(int i = 0; i < itemstobring.Count; i++)
+            {
+                Item item = new Item { ItemName = itemstobring.ElementAt(i).ItemName, ListItemId = listItem.Id };
+                await ItemTable.InsertAsync(item);
+            }
             //}
             //catch (Exception ex)
             //{
