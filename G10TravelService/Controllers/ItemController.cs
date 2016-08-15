@@ -56,6 +56,12 @@ namespace G10TravelService.Controllers
         {
             return DeleteAsync(id);
         }
+        
+        [HttpGet, Route("api/Item/GetItems")]
+        public IQueryable<Item> getItemsForList(string listId)
+        {
+            return GetAllItems().Where(l => l.ListItemId.Contains(listId)).AsQueryable();
+        }
 
     }
 }
