@@ -4,11 +4,45 @@ using Windows.UI.Xaml.Controls;
 using G10Travel.Views;
 using Windows.Security.Authentication.Web;
 using Facebook;
+using System.Diagnostics;
 
 namespace G10Travel
 {
     public sealed partial class MainPage : Page
     {
+
+        public MainPage()
+        {
+            checkIfLoggedIn();
+        }
+
+
+        private async void checkIfLoggedIn()
+        {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+            Object username = localSettings.Values["username"];
+            Object userpassword = localSettings.Values["userpassword"];
+
+
+            if (username != null || userpassword != null)
+            {
+                try { 
+                App.MobileService.CurrentUser = await AuthenticateAsync(username.ToString(), userpassword.ToString());
+                Frame.Navigate(typeof(HomePage));
+                }
+                catch (MobileServiceInvalidOperationException ignored)
+                {
+                    this.InitializeComponent();
+                }
+            }
+            else
+            {
+                this.InitializeComponent();
+            }
+        }
+
+
         private async void btnLogin_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
 
@@ -25,6 +59,14 @@ namespace G10Travel
             {
                 // Sign-in and set the returned user on the context,
                 // then load data from the mobile service.
+
+                var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+                // Create a simple setting
+
+                localSettings.Values["username"] = this.txtUsername.Text;
+                localSettings.Values["userpassword"] = txtPassword.Password;
+
 
                 App.MobileService.CurrentUser = await AuthenticateAsync(this.txtUsername.Text, txtPassword.Password);
                 Frame.Navigate(typeof(HomePage));
@@ -43,7 +85,7 @@ namespace G10Travel
         private void ResetLoginUI()
         {
             txtPassword.Password = "";
-            txtUsername.Text = "";
+            //txtUsername.Text = "";
         }
 
         private async void btnRegister_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

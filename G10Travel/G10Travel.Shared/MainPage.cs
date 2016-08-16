@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using G10Travel.Views;
 using Windows.Security.Authentication.Web;
 using Facebook;
+using System.Diagnostics;
 
 // To add offline sync support, add the NuGet package Microsoft.WindowsAzure.MobileServices.SQLiteStore
 // to your project. Then, uncomment the lines marked // offline sync
@@ -23,13 +24,9 @@ namespace G10Travel
     {
         //private IMobileServiceSyncTable<TodoItem> todoTable = App.MobileService.GetSyncTable<TodoItem>(); // offline sync
 
-        public MainPage()
-        {
-                this.InitializeComponent();
-        }
-
         // Define a member variable for storing the signed-in user. 
         private MobileServiceUser user;
+        
 
         // Define a method that performs the authentication process
         // using a Facebook sign-in. 

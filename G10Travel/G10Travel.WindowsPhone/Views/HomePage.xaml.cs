@@ -54,6 +54,9 @@ namespace G10Travel.Views
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values.Remove("username");
+            localSettings.Values.Remove("userpassword");
             Frame.Navigate(typeof(MainPage));
         }
 
