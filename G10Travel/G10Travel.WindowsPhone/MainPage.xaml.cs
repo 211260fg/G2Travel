@@ -23,7 +23,7 @@ namespace G10Travel
 
             Object username = localSettings.Values["username"];
             Object userpassword = localSettings.Values["userpassword"];
-
+            
 
             if (username != null || userpassword != null)
             {

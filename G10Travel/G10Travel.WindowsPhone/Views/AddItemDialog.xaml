@@ -8,14 +8,30 @@
     mc:Ignorable="d"
     Title="Add Item"
     PrimaryButtonText="Add"  
-    SecondaryButtonText="cancel"
+    SecondaryButtonText="Cancel"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBox x:Name="itemName" Header="Item name:"/>
 
+
+
+        <AutoSuggestBox 
+   TextChanged="AutoSuggestBox_TextChanged"
+   SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+            Header="Item category">
+            <AutoSuggestBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="itemCategory"/>
+                    </StackPanel>
+                </DataTemplate>
+            </AutoSuggestBox.ItemTemplate>
+        </AutoSuggestBox>
+
         <TextBlock x:Name="errorTextBlock" Style="{StaticResource ControlContextualInfoTextBlockStyle}" />
 
     </StackPanel>
+
 </ContentDialog>

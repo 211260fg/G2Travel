@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,6 +24,14 @@ namespace G10Travel.Views
 
         private Boolean ResultOK;
 
+
+        public System.Collections.IEnumerable Categories = new ObservableCollection<string>
+        {
+            "a",
+            "b",
+            "c",
+            "d"
+        };
         public AddItemDialog()
         {
             this.InitializeComponent();
@@ -44,6 +53,33 @@ namespace G10Travel.Views
 
         }
 
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                // You can set a threshold when to start looking for suggestions
+                /*if (sender.Text.Length > 3)
+                {*/
+                System.Diagnostics.Debug.WriteLine("text changed");
+                sender.ItemsSource = Categories;
+                /*}
+                else
+                {
+                    sender.ItemsSource = new List<String> { };
+                }*/
+            }
+        }
+
+        private String getSuggestions(String input)
+        {
+            return "test";
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+
+        }
+
         public String GetItemName()
         {
             return itemName.Text;
@@ -55,6 +91,8 @@ namespace G10Travel.Views
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
         }
     }
+        
 }
