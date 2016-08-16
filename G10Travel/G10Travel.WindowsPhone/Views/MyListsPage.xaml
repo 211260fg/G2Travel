@@ -29,16 +29,23 @@
 
             <ListView.ItemTemplate>
 
-
-
                 <DataTemplate >
 
-                    <StackPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
 
-                        <TextBlock Text="{Binding Name}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
-                        <TextBlock Text="-" Style="{ThemeResource ListViewItemTextBlockStyle}" Padding="10,0,10,10"/>
-                        <TextBlock Text="{Binding Location}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Name}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                            <TextBlock Text="-" Style="{ThemeResource ListViewItemTextBlockStyle}" Padding="10,0,10,10"/>
+                            <TextBlock Text="{Binding Location}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
 
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+
+                            <TextBlock Text="{Binding startDate}" Style="{ThemeResource ListViewItemContentTextBlockStyle}"/>
+                            <TextBlock Text="-" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Padding="10,0,10,10"/>
+                            <TextBlock Text="{Binding endDate}" Style="{ThemeResource ListViewItemContentTextBlockStyle}"/>
+
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

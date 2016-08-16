@@ -82,7 +82,7 @@ namespace G10Travel.Views
                 }
                 try
                 {
-                    await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Text, this.tfEndDate.Text, itemList);
+                    await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Date.ToString("dd/MM/yyyy"), this.tfEndDate.Date.ToString("dd/MM/yyyy"), itemList);
 
 
                     Frame.Navigate(typeof(HomePage));
