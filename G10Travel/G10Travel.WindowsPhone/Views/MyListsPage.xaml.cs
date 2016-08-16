@@ -50,8 +50,8 @@ namespace G10Travel.Views
         {
             try
             {
-                IEnumerable<string> test = await listItemTable.Where(list => list.Name == "test").Select(list => list.Name).ToEnumerableAsync();
-                Debug.WriteLine(test);
+                /*IEnumerable<string> test = await listItemTable.Where(list => list.Name == "test").Select(list => list.Name).ToEnumerableAsync();
+                Debug.WriteLine(test);*/
 
                 List<ListItem> items = await listItemTable
                         .ToListAsync();
