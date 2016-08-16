@@ -7,5 +7,7 @@ namespace G10TravelService.DataObjects
         public string ItemName { get; set; }
 
         public string ListItemId { get; set; }
+
+        public bool ItemChecked { get; set; }
     }
 }
