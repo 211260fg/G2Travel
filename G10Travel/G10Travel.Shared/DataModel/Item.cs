@@ -13,5 +13,8 @@ namespace G10Travel.DataModel
 
         [JsonProperty(PropertyName = "listitemid")]
         public string ListItemId { get; set; }
+
+        [JsonProperty(PropertyName = "itemchecked")]
+        public string ItemChecked { get; set; }
     }
 }

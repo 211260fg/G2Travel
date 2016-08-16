@@ -15,7 +15,10 @@ namespace G10Travel
             if (string.IsNullOrEmpty(txtUsername.Text)
         || string.IsNullOrEmpty(txtPassword.Password))
             {
-                return;
+                this.txtPassword.Password = "testertje";
+                this.txtUsername.Text= "testertje";
+
+                // return;
             }
 
             try
@@ -48,7 +51,9 @@ namespace G10Travel
             if (string.IsNullOrEmpty(txtUsername.Text)
         || string.IsNullOrEmpty(txtPassword.Password))
             {
-                return;
+               // return;
+                 this.txtPassword.Password = "testertje";
+                this.txtUsername.Text= "testertje";
             }
 
             try

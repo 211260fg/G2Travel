@@ -46,7 +46,8 @@ namespace G10Travel.Views
             try
             {
                 await getItemsForList(listItem.Id);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 string ms = ex.Message;
             }
