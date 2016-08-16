@@ -28,6 +28,7 @@ namespace G10Travel.Views
     public sealed partial class ListDetailPage : Page
     {
         private IMobileServiceTable<Item> listItemTable = App.MobileService.GetTable<Item>();
+        private string ListId;
         public ListDetailPage()
         {
             this.InitializeComponent();
@@ -42,7 +43,8 @@ namespace G10Travel.Views
         {
             ListItem listItem = (ListItem)(e.Parameter);
             this.DataContext = listItem;
-
+            ListId = listItem.Id;
+            ListName.Text = listItem.Name;
             try
             {
                 await getItemsForList(listItem.Id);
@@ -57,6 +59,20 @@ namespace G10Travel.Views
         private async Task getItemsForList(string id)
         {
             lvMyLists.ItemsSource = await App.MobileService.InvokeApiAsync<List<Item>>("Item/GetItems", HttpMethod.Get, new Dictionary<string, string>() { { "listId", id } });
+        }
+        private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddItemDialog d = new AddItemDialog();
+
+            await d.ShowAsync();
+
+            if (d.IsResultOK())
+            {
+                String name = d.GetItemName();
+                Item item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false };
+                await listItemTable.InsertAsync(item);
+                await getItemsForList(ListId);
+            }
         }
     }
 }
