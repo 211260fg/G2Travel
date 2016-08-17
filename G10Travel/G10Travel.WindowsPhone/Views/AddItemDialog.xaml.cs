@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,14 +24,10 @@ namespace G10Travel.Views
 
         private Boolean ResultOK;
 
-
-        public System.Collections.IEnumerable Categories = new List<string>()
-{
- "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Nullam", "felis", "dui", "gravida", "at"};
-
-        public AddItemDialog()
+        public AddItemDialog(IEnumerable Categories)
         {
             this.InitializeComponent();
+            createCategories(Categories);
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -48,12 +45,24 @@ namespace G10Travel.Views
             }
 
         }
+
+        private void createCategories(IEnumerable Categories)
+        {
+            
+            cbCategory.ItemsSource = Categories;
+        }
        
 
         public String GetItemName()
         {
             return itemName.Text;
         }
+
+        public String GetCategory()
+        {
+            return cbCategory.SelectedItem.ToString();
+        }
+
         public Boolean IsResultOK()
         {
             return ResultOK;
@@ -61,12 +70,22 @@ namespace G10Travel.Views
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
+            //Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
         }
 
-        private void OnCbCategoryContentChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private void OnCbCategorySelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ComboBox comboBox = (ComboBox)sender;
 
+            if (comboBox.SelectedIndex == 0)
+            {
+                cbCategory.Width = 146;
+                tbNewCategory.Visibility = Visibility.Visible;
+            }else
+            {
+                cbCategory.Width = 356;
+                tbNewCategory.Visibility = Visibility.Collapsed;
+            }
         }
     }
         
