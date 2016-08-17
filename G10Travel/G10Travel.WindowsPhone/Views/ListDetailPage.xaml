@@ -14,13 +14,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,18,0,18">
-            <TextBlock x:Name="ListName" Text="{Binding ListName}" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
+        <StackPanel Name="TitlePanel" Grid.Row="0" Margin="0,18,0,18">
+            <TextBlock Text="{Binding Name}" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
         </StackPanel>
 
         <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="580" Margin="0,0,0.167,0" Grid.Row="1" VerticalAlignment="Top" Width="400"/>
 
-        <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Height="550" Margin="0" Grid.Row="1" VerticalAlignment="Top" Width="390">
+        <ListView Name="lvMyLists"  HorizontalAlignment="Left" Height="550" Margin="0" Grid.Row="1" VerticalAlignment="Top" Width="390">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapGrid Orientation="Horizontal" ItemWidth="400" />
@@ -31,7 +31,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="20">
-                        <CheckBox IsChecked="{Binding ItemChecked}">
+                        <CheckBox Click="CheckBox_Click" IsChecked="{Binding ItemChecked, Mode=TwoWay}">
+                            <!--<TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>-->
                             <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
                         </CheckBox>
                     </StackPanel>

@@ -44,7 +44,7 @@ namespace G10Travel.Views
             ListItem listItem = (ListItem)(e.Parameter);
             this.DataContext = listItem;
             ListId = listItem.Id;
-            ListName.Text = listItem.Name;
+            //ListName.Text = listItem.Name;
             try
             {
                 await getItemsForList(listItem.Id);
@@ -55,6 +55,8 @@ namespace G10Travel.Views
             }
             base.OnNavigatedTo(e);
         }
+
+
 
         private async Task getItemsForList(string id)
         {
@@ -73,6 +75,12 @@ namespace G10Travel.Views
                 await listItemTable.InsertAsync(item);
                 await getItemsForList(ListId);
             }
+        }
+
+        private async void CheckBox_Click(object sender, RoutedEventArgs e)
+        { 
+            Item item = (Item)((CheckBox)sender).DataContext;
+            await listItemTable.UpdateAsync(item);
         }
     }
 }
