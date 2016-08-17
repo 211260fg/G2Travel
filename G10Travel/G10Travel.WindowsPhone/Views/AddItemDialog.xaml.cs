@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,17 +24,10 @@ namespace G10Travel.Views
 
         private Boolean ResultOK;
 
-
-        public System.Collections.IEnumerable Categories = new ObservableCollection<string>
-        {
-            "a",
-            "b",
-            "c",
-            "d"
-        };
-        public AddItemDialog()
+        public AddItemDialog(IEnumerable Categories)
         {
             this.InitializeComponent();
+            createCategories(Categories);
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -53,37 +46,23 @@ namespace G10Travel.Views
 
         }
 
-        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void createCategories(IEnumerable Categories)
         {
-            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
-            {
-                // You can set a threshold when to start looking for suggestions
-                /*if (sender.Text.Length > 3)
-                {*/
-                System.Diagnostics.Debug.WriteLine("text changed");
-                sender.ItemsSource = Categories;
-                /*}
-                else
-                {
-                    sender.ItemsSource = new List<String> { };
-                }*/
-            }
+            
+            cbCategory.ItemsSource = Categories;
         }
-
-        private String getSuggestions(String input)
-        {
-            return "test";
-        }
-
-        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-
-        }
+       
 
         public String GetItemName()
         {
             return itemName.Text;
         }
+
+        public String GetCategory()
+        {
+            return cbCategory.SelectedItem.ToString();
+        }
+
         public Boolean IsResultOK()
         {
             return ResultOK;
@@ -91,7 +70,22 @@ namespace G10Travel.Views
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
+            //Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
+        }
+
+        private void OnCbCategorySelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+
+            if (comboBox.SelectedIndex == 0)
+            {
+                cbCategory.Width = 146;
+                tbNewCategory.Visibility = Visibility.Visible;
+            }else
+            {
+                cbCategory.Width = 356;
+                tbNewCategory.Visibility = Visibility.Collapsed;
+            }
         }
     }
         

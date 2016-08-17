@@ -72,14 +72,18 @@ namespace G10Travel.Views
             try
             {
                 var currentUser = App.MobileService.CurrentUser;
-                List<string> newItems = lvItemList.Items.Cast<string>().ToList();
-                List<Item> itemList = new List<Item>();
+                //List<string> newItems = lvItemList.Items.Cast<string>().ToList();
+                //List<Item> itemList = new List<Item>();
+                List<Item> itemList = lvItemList.Items.Cast<Item>().ToList();
 
-                for (int i = 0; i < newItems.Count; i++)
+                /*for (int i = 0; i < newItems.Count; i++)
                 {
                     Item item = new Item { ItemName = newItems[i] };
                     itemList.Add(item);
-                }
+                }*/
+
+
+
                 try
                 {
                     await addList(this.tfName.Text, this.tfLocation.Text, this.tfStartDate.Date.ToString("dd/MM/yyyy"), this.tfEndDate.Date.ToString("dd/MM/yyyy"), itemList);
@@ -121,20 +125,23 @@ namespace G10Travel.Views
 
         private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
-            AddItemDialog d = new AddItemDialog();
+            //TODO juiste lijst gebruiken
+            System.Collections.IEnumerable Categories = new List<string>(){
+            "New Category", "Clothing", "Bathroom", "Utensils", "Camping", "Financial" };
+
+            AddItemDialog d = new AddItemDialog(Categories);
 
             await d.ShowAsync();
-
-            /*myItemsList.Add("paraplu");
-            myItemsList.Add("aaa");
-            myItemsList.Add("bbbb");*/
-            //lvItemList.ItemsSource = myItemsList;
 
             if (d.IsResultOK())
             {
                 String name = d.GetItemName();
-                lvItemList.Items.Add(name);
+                Item item = new Item { ItemName = d.GetItemName() };
+                lvItemList.Items.Add(item);
             }
         }
+        
+        
+
     }
 }

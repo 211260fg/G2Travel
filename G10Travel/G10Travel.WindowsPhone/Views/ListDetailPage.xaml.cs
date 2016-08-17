@@ -64,7 +64,11 @@ namespace G10Travel.Views
         }
         private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
-            AddItemDialog d = new AddItemDialog();
+            //TODO juiste lijst gebruiken
+            System.Collections.IEnumerable Categories = new List<string>(){
+            "New Category", "Clothing", "Bathroom", "Utensils", "Camping", "Financial" };
+
+            AddItemDialog d = new AddItemDialog(Categories);
 
             await d.ShowAsync();
 
