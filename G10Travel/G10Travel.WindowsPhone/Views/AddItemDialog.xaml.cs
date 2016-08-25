@@ -1,4 +1,5 @@
-﻿using System;
+﻿using G10Travel.DataModel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +25,7 @@ namespace G10Travel.Views
 
         private Boolean ResultOK;
 
-        public AddItemDialog(IEnumerable Categories)
+        public AddItemDialog(IEnumerable<Category> Categories)
         {
             this.InitializeComponent();
             createCategories(Categories);
@@ -46,7 +47,7 @@ namespace G10Travel.Views
 
         }
 
-        private void createCategories(IEnumerable Categories)
+        private void createCategories(IEnumerable<Category> Categories)
         {
             
             cbCategory.ItemsSource = Categories;
@@ -58,9 +59,15 @@ namespace G10Travel.Views
             return itemName.Text;
         }
 
-        public String GetCategory()
+        public Category GetCategory()
         {
-            return cbCategory.SelectedItem.ToString();
+            if(cbCategory.SelectedIndex == 0)
+            {
+                return new Category { Name = tbNewCategory.Text };  
+            } else
+            {
+                return (Category)cbCategory.SelectedItem;
+            }
         }
 
         public Boolean IsResultOK()
