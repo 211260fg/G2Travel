@@ -52,7 +52,7 @@ namespace G10Travel.Views
             this.DataContext = listItem;
             ListId = listItem.Id;
             //ListName.Text = listItem.Name;
-            pivotList.Name = listItem.Name;
+            pivotList.Title = listItem.Name;
             try
             {
                 await getItemsForList(listItem.Id);
@@ -71,11 +71,8 @@ namespace G10Travel.Views
             List<Item> tasks = new List<Item>(); ;
             foreach (Item item in allItems)
             {
-                System.Diagnostics.Debug.WriteLine(item.ItemName+":");
-                if(item.Type!=null)
-                    System.Diagnostics.Debug.WriteLine(item.Type);
-                else
-                    System.Diagnostics.Debug.WriteLine("type is null");
+
+                //System.Diagnostics.Debug.WriteLine("type is null");
 
                 if (item.Type!=null&& item.Type.ToLower().Equals("task"))
                 {
