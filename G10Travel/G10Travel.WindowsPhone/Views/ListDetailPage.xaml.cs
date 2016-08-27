@@ -101,8 +101,9 @@ namespace G10Travel.Views
         private async void dtManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs e)
         {
             e.Request.Data.Properties.Title = "My tracking list!";
-            e.Request.Data.Properties.Description = "Already started packing for our trip to " + listItem.Location + "on " + listItem.startDate;
-            e.Request.Data.SetWebLink(new Uri("http://code.msdn.com/wpapps"));
+            e.Request.Data.SetText("Already started packing for our trip to " + listItem.Location + " on " + listItem.startDate + "!");
+            //e.Request.Data.Properties.Description = "Already started packing for our trip to " + listItem.Location + "on " + listItem.startDate;
+            //e.Request.Data.SetWebLink(new Uri("https://g9ts.azurewebsites.net/"));
         }
     }
 }

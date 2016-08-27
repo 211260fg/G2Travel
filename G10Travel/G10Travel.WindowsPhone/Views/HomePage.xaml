@@ -35,7 +35,7 @@
                 <TextBlock FontSize="32" x:Name="txtSettings" TextWrapping="Wrap" Text="Settings" Foreground="White" FontFamily="Bauhaus 93"/>
             </ListView>
         </ListView>
-        <Button x:Name="btnLogout" Content="Log out" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="56" Click="btnLogout_Click"/>
+        <Button x:Name="btnLogout" Content="Log out" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="129" Click="btnLogout_Click"/>
 
     </Grid>
 </Page>
