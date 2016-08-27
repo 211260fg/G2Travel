@@ -58,7 +58,7 @@ namespace G10Travel.Views
 
             for(int i = 0; i < itemstobring.Count; i++)
             {
-                Item item = new Item { ItemName = itemstobring.ElementAt(i).ItemName, ListItemId = listItem.Id };
+                Item item = new Item { ItemName = itemstobring.ElementAt(i).ItemName, ListItemId = listItem.Id, Type = itemstobring.ElementAt(i).Type};
                 await ItemTable.InsertAsync(item);
             }
             //}
