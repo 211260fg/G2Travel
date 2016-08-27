@@ -51,7 +51,8 @@ namespace G10Travel.Views
             listItem = (ListItem)(e.Parameter);
             this.DataContext = listItem;
             ListId = listItem.Id;
-            ListName.Text = listItem.Name;
+            //ListName.Text = listItem.Name;
+            pivotList.Name = listItem.Name;
             try
             {
                 await getItemsForList(listItem.Id);
@@ -65,7 +66,34 @@ namespace G10Travel.Views
 
         private async Task getItemsForList(string id)
         {
-            lvMyLists.ItemsSource = await App.MobileService.InvokeApiAsync<List<Item>>("Item/GetItems", HttpMethod.Get, new Dictionary<string, string>() { { "listId", id } });
+            IEnumerable<Item> allItems = await App.MobileService.InvokeApiAsync<List<Item>>("Item/GetItems", HttpMethod.Get, new Dictionary<string, string>() { { "listId", id } });
+            List<Item> itemsToBring = new List<Item>();
+            List<Item> tasks = new List<Item>(); ;
+            foreach (Item item in allItems)
+            {
+                System.Diagnostics.Debug.WriteLine(item.ItemName+":");
+                if(item.Type!=null)
+                    System.Diagnostics.Debug.WriteLine(item.Type);
+                else
+                    System.Diagnostics.Debug.WriteLine("type is null");
+
+                if (item.Type!=null&& item.Type.ToLower().Equals("task"))
+                {
+                    tasks.Add(item);
+                }
+                else
+                {
+                    itemsToBring.Add(item);
+                }
+            }
+
+
+            //IEnumerable<Item> itemsToBring = allItems.Where(item => item.Type.ToLower().Equals("item"));
+            //IEnumerable<Item> tasks = allItems.Where(item => item.Type.ToLower().Equals("task"));
+
+            lvMyLists.ItemsSource = itemsToBring;
+            lvMyTasks.ItemsSource = tasks;
+
         }
         private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {

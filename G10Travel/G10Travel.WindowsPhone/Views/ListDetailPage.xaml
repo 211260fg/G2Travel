@@ -12,7 +12,7 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add" IsCompact="True" Label="Add" Click="btnAddListItem_Click" />
                 <AppBarButton Icon="ReShare" IsCompact="True" Label="Share" Click="btnShare_Click"/>
-                <AppBarButton Icon="Edit" IsCompact="True" Label="Edit" Click="btnEdit_Click"/>
+                <AppBarButton Icon="Edit" IsCompact="True" Label="Share" Click="btnEdit_Click"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -28,9 +28,55 @@
             <TextBlock x:Name="ListName" Text="{Binding ListName}" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
         </StackPanel>
 
-        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="580" Margin="0,0.167,0,-6.001" Grid.Row="1" VerticalAlignment="Top" Width="400" Grid.RowSpan="2"/>
+        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="925" Margin="0,0,0,-345" VerticalAlignment="Top" Width="400" Grid.RowSpan="3">
+            <Pivot x:Name="pivotList" Margin="-1.667,-2.667,-1.667,342.333" Title="List">
+                <PivotItem Header="Items" Margin="19,-146,18.667,-0.5">
 
-        <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Height="550" Margin="0,0.167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="390" Grid.RowSpan="2">
+                    <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Margin="0,169,0,10.5" Width="362">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Horizontal" ItemWidth="400" />
+                            </ItemsPanelTemplate>
+
+                        </ListView.ItemsPanel>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="20">
+                                    <CheckBox IsChecked="{Binding ItemChecked}">
+                                        <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </PivotItem>
+                <PivotItem Header="Tasks">
+                    <ListView x:Name="lvMyTasks" Margin="0,0,-0.333,9.333" Grid.Row="2" d:LayoutOverrides="VerticalAlignment">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Horizontal" ItemWidth="400" />
+                            </ItemsPanelTemplate>
+
+                        </ListView.ItemsPanel>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="20">
+                                    <CheckBox IsChecked="{Binding ItemChecked}">
+                                        <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </PivotItem>
+            </Pivot>
+        </Border>
+        <!--
+        <ListView x:Name="lvMyTasks" Margin="10,32.833,9,10" Grid.Row="2" d:LayoutOverrides="VerticalAlignment, LeftPosition, RightPosition, TopPosition, BottomPosition" Background="Black">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapGrid Orientation="Horizontal" ItemWidth="400" />
@@ -49,5 +95,25 @@
             </ListView.ItemTemplate>
 
         </ListView>
+
+        <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Height="246" Margin="10,53,0,-8.167" VerticalAlignment="Top" Width="380" Background="Black">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Orientation="Horizontal" ItemWidth="400" />
+                </ItemsPanelTemplate>
+
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="20">
+                        <CheckBox IsChecked="{Binding ItemChecked}">
+                            <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                        </CheckBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>-->
     </Grid>
 </Page>

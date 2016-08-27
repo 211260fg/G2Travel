@@ -38,9 +38,9 @@
             <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="344" FontSize="21.333" Grid.RowSpan="4"/>
             <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,13.5,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Grid.Row="4" FontFamily="Arial" FontSize="17.333"/>
             <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="10,36.5,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="344" Grid.Row="4" FontSize="21.333"/>
-            <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Stretch" Margin="10,92.5,60.5,0" Grid.Row="4" VerticalAlignment="Top" Click="btnRegister_Click" Background="{StaticResource btnBG}" FontSize="18.133"/>
-            <Button x:Name="btnLogin" Grid.ColumnSpan="2" Content="Login" HorizontalAlignment="Left" Margin="187,92.5,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="0.474,1.569" Width="164" Click="btnLogin_Click" Background="#FF232967" FontSize="18.133"/>
-            <Button x:Name="btnFbLogin" Content="Login with Facebook" HorizontalAlignment="Left" Margin="78,144.833,0,-46.833" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="215" Click="btnFbLogin_click"/>
+            <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Stretch" Margin="10,92.833,60.5,0" Grid.Row="4" VerticalAlignment="Top" Click="btnRegister_Click" Background="{StaticResource btnBG}" FontSize="18.133" Height="57"/>
+            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="-55.5,92.833,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="0.474,1.569" Width="164" Click="btnLogin_Click" Background="#FF232967" FontSize="18.133" Grid.Column="1" Height="57"/>
+            <Button x:Name="btnFbLogin" Content="Login with Facebook" HorizontalAlignment="Left" Margin="78,144.833,-50.5,-43.833" Grid.Row="4" VerticalAlignment="Top" Width="215" Click="btnFbLogin_click" Height="54"/>
 
         </Grid>
     </Grid>
