@@ -32,7 +32,7 @@
             <Pivot x:Name="pivotList" Margin="-1.667,-2.667,-1.667,342.333" Title="List">
                 <PivotItem Header="Items" Margin="19,-146,18.667,-0.5">
 
-                    <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Margin="0,169,0,10.5" Width="362">
+                    <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Margin="0,141,0,10.5" Width="362">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapGrid Orientation="Horizontal" ItemWidth="400" />
@@ -44,7 +44,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="20">
                                     <CheckBox IsChecked="{Binding ItemChecked}">
-                                        <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="0, -10, 0, 0"/>
                                     </CheckBox>
                                 </StackPanel>
                             </DataTemplate>
@@ -53,7 +53,7 @@
                     </ListView>
                 </PivotItem>
                 <PivotItem Header="Tasks">
-                    <ListView x:Name="lvMyTasks" Margin="0,0,-0.333,9.333" Grid.Row="2" d:LayoutOverrides="VerticalAlignment">
+                    <ListView x:Name="lvMyTasks" Margin="0,10,-0.333,9.333" Grid.Row="2" d:LayoutOverrides="VerticalAlignment">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapGrid Orientation="Horizontal" ItemWidth="400" />
