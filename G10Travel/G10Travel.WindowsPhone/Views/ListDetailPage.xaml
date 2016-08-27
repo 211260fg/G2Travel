@@ -7,25 +7,35 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{StaticResource background}">
+    <Page.BottomAppBar>
+        <CommandBar IsSticky="True" x:Name="appBar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Add" IsCompact="True" Label="Add" Click="btnAddListItem_Click" />
+                <AppBarButton Icon="ReShare" IsCompact="True" Label="Share" Click="btnShare_Click"/>
+                <AppBarButton Icon="Edit" IsCompact="True" Label="Share" Click="btnEdit_Click"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid x:Name="ListDetailsView" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="269*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,18,0,18">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,18,0,17.833">
             <TextBlock x:Name="ListName" Text="{Binding ListName}" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
         </StackPanel>
 
-        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="580" Margin="0,0,0.167,0" Grid.Row="1" VerticalAlignment="Top" Width="400"/>
+        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="580" Margin="0,0.167,0,-6.001" Grid.Row="1" VerticalAlignment="Top" Width="400" Grid.RowSpan="2"/>
 
-        <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Height="550" Margin="0" Grid.Row="1" VerticalAlignment="Top" Width="390">
+        <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Height="550" Margin="0,0.167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="390" Grid.RowSpan="2">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapGrid Orientation="Horizontal" ItemWidth="400" />
                 </ItemsPanelTemplate>
-                
+
             </ListView.ItemsPanel>
 
             <ListView.ItemTemplate>
@@ -39,9 +49,5 @@
             </ListView.ItemTemplate>
 
         </ListView>
-
-        <Button Name="btnAddListItem" Content="+" FontSize="24" VerticalAlignment="Stretch" Background="#FFFDFDFD" Foreground="Black" MinWidth="10" MinHeight="10" RenderTransformOrigin="0.561,0.544" HorizontalAlignment="Stretch" Click="btnAddListItem_Click" Margin="0,518.167,0,-10" Grid.Row="1"/>
-
-
     </Grid>
 </Page>

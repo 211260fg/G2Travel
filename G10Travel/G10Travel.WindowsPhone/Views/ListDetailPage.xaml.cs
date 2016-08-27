@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -29,6 +30,7 @@ namespace G10Travel.Views
     {
         private IMobileServiceTable<Item> listItemTable = App.MobileService.GetTable<Item>();
         private string ListId;
+        private ListItem listItem;
         public ListDetailPage()
         {
             this.InitializeComponent();
@@ -41,7 +43,10 @@ namespace G10Travel.Views
         /// This parameter is typically used to configure the page.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ListItem listItem = (ListItem)(e.Parameter);
+            DataTransferManager dtManager = DataTransferManager.GetForCurrentView();
+            dtManager.DataRequested += dtManager_DataRequested;
+
+            listItem = (ListItem)(e.Parameter);
             this.DataContext = listItem;
             ListId = listItem.Id;
             ListName.Text = listItem.Name;
@@ -77,6 +82,23 @@ namespace G10Travel.Views
                 await listItemTable.InsertAsync(item);
                 await getItemsForList(ListId);
             }
+        }
+
+        private void btnShare_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+        }
+
+        private async void dtManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            e.Request.Data.Properties.Title = "My tracking list!";
+            e.Request.Data.Properties.Description = "Already started packing for our trip to " + listItem.Location + "on " + listItem.startDate;
+            e.Request.Data.SetWebLink(new Uri("http://code.msdn.com/wpapps"));
         }
     }
 }
