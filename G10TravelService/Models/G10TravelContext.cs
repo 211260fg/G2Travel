@@ -41,6 +41,8 @@ namespace G10TravelService.Models
                 new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
                     "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
+
+        public System.Data.Entity.DbSet<G10TravelService.DataObjects.Category> Categories { get; set; }
     }
 
 }

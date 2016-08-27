@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\ListItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\TodoItem.cs" />

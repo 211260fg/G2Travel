@@ -211,11 +211,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomLoginController.cs" />
     <Compile Include="Controllers\CustomLoginResult.cs" />
     <Compile Include="Controllers\CustomRegistrationController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ListItemController.cs" />
+    <Compile Include="DataObjects\Category.cs" />
     <Compile Include="DataObjects\Item.cs" />
     <Compile Include="Requests\ListItemRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
@@ -247,7 +249,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\G9TS - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\G9TS - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\G9TS - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\G9TS - Web Deploy.pubxml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

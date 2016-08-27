@@ -17,6 +17,12 @@ namespace G10Travel.DataModel
         [JsonProperty(PropertyName = "itemchecked")]
         public bool ItemChecked { get; set; }
 
+        [JsonProperty(PropertyName = "type")]
+        public string Type { get; set; }
+
+        [JsonProperty(PropertyName = "categoryid")]
+        public string CategoryId { get; set; }
+
         public override string ToString()
         {
             return System.String.Format(ItemName);

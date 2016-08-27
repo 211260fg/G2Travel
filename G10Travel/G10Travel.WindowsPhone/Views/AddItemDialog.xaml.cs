@@ -1,4 +1,5 @@
-﻿using System;
+﻿using G10Travel.DataModel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +25,7 @@ namespace G10Travel.Views
 
         private Boolean ResultOK;
 
-        public AddItemDialog(IEnumerable Categories)
+        public AddItemDialog(IEnumerable<Category> Categories)
         {
             this.InitializeComponent();
             createCategories(Categories);
@@ -32,35 +33,51 @@ namespace G10Travel.Views
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-
+            ResultOK = true;
+            if ((Category)cbCategory.SelectedItem ==null)
+            {
+                args.Cancel = true;
+                errorTextBlock.Text = "Category name is required";
+                ResultOK = false;
+            }
             if (string.IsNullOrEmpty(itemName.Text))
             {
                 args.Cancel = true;
                 errorTextBlock.Text = "Item name is required";
                 ResultOK = false;
             }
-            else
-            {
-                ResultOK = true;
-            }
-
         }
 
-        private void createCategories(IEnumerable Categories)
+        private void createCategories(IEnumerable<Category> Categories)
         {
-            
+
             cbCategory.ItemsSource = Categories;
         }
-       
+
+        public String GetItemType()
+        {
+            if ((bool)task.IsChecked)
+            {
+                return "Task";
+            }
+            return "Item";
+        }
 
         public String GetItemName()
         {
             return itemName.Text;
         }
 
-        public String GetCategory()
+        public Category GetCategory()
         {
-            return cbCategory.SelectedItem.ToString();
+            if (cbCategory.SelectedIndex == 0)
+            {
+                return new Category { Name = tbNewCategory.Text };
+            }
+            else
+            {
+                return (Category)cbCategory.SelectedItem;
+            }
         }
 
         public Boolean IsResultOK()
@@ -81,12 +98,13 @@ namespace G10Travel.Views
             {
                 cbCategory.Width = 146;
                 tbNewCategory.Visibility = Visibility.Visible;
-            }else
+            }
+            else
             {
                 cbCategory.Width = 356;
                 tbNewCategory.Visibility = Visibility.Collapsed;
             }
         }
     }
-        
+
 }

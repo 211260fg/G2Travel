@@ -33,6 +33,7 @@ namespace G10Travel.Views
     {
         private IMobileServiceTable<ListItem> listItemTable = App.MobileService.GetTable<ListItem>();
         private IMobileServiceTable<Item> ItemTable = App.MobileService.GetTable<Item>();
+        private IMobileServiceTable<Category> CategoryTable = App.MobileService.GetTable<Category>();
         public NewListPage()
         {
             this.InitializeComponent();
@@ -125,10 +126,8 @@ namespace G10Travel.Views
 
         private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
-            //TODO juiste lijst gebruiken
-            System.Collections.IEnumerable Categories = new List<string>(){
-            "New Category", "Clothing", "Bathroom", "Utensils", "Camping", "Financial" };
-
+            List<Category> Categories = await CategoryTable.ToListAsync();
+            Categories.Insert(0, new Category { Name = "Add new Category"});
             AddItemDialog d = new AddItemDialog(Categories);
 
             await d.ShowAsync();
@@ -136,7 +135,18 @@ namespace G10Travel.Views
             if (d.IsResultOK())
             {
                 String name = d.GetItemName();
-                Item item = new Item { ItemName = d.GetItemName() };
+                Category cat = d.GetCategory();
+                String type = d.GetItemType();
+                Item item;
+                if (Categories.Contains(cat))
+                {
+                    item = new Item { ItemName = name, CategoryId = cat.Id, Type = type};
+                }
+                else
+                {
+                    await CategoryTable.InsertAsync(cat);
+                    item = new Item { ItemName = name, CategoryId = cat.Id, Type = type};
+                }
                 lvItemList.Items.Add(item);
             }
         }
