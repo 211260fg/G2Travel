@@ -33,26 +33,35 @@ namespace G10Travel.Views
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-
+            ResultOK = true;
+            if ((Category)cbCategory.SelectedItem ==null)
+            {
+                args.Cancel = true;
+                errorTextBlock.Text = "Category name is required";
+                ResultOK = false;
+            }
             if (string.IsNullOrEmpty(itemName.Text))
             {
                 args.Cancel = true;
                 errorTextBlock.Text = "Item name is required";
                 ResultOK = false;
             }
-            else
-            {
-                ResultOK = true;
-            }
-
         }
 
         private void createCategories(IEnumerable<Category> Categories)
         {
-            
+
             cbCategory.ItemsSource = Categories;
         }
-       
+
+        public String GetItemType()
+        {
+            if ((bool)task.IsChecked)
+            {
+                return "Task";
+            }
+            return "Item";
+        }
 
         public String GetItemName()
         {
@@ -61,10 +70,11 @@ namespace G10Travel.Views
 
         public Category GetCategory()
         {
-            if(cbCategory.SelectedIndex == 0)
+            if (cbCategory.SelectedIndex == 0)
             {
-                return new Category { Name = tbNewCategory.Text };  
-            } else
+                return new Category { Name = tbNewCategory.Text };
+            }
+            else
             {
                 return (Category)cbCategory.SelectedItem;
             }
@@ -88,12 +98,13 @@ namespace G10Travel.Views
             {
                 cbCategory.Width = 146;
                 tbNewCategory.Visibility = Visibility.Visible;
-            }else
+            }
+            else
             {
                 cbCategory.Width = 356;
                 tbNewCategory.Visibility = Visibility.Collapsed;
             }
         }
     }
-        
+
 }

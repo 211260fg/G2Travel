@@ -54,8 +54,7 @@ namespace G10Travel
            password = password
        });
             this.user = user;
-            return user;
-
+            return await AuthenticateAsync(username, password);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

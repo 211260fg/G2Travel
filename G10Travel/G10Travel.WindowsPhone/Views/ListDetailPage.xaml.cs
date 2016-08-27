@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -30,6 +31,8 @@ namespace G10Travel.Views
         private IMobileServiceTable<Item> listItemTable = App.MobileService.GetTable<Item>();
         private IMobileServiceTable<Category> CategoryTable = App.MobileService.GetTable<Category>();
         private string ListId;
+
+
         public ListDetailPage()
         {
             this.InitializeComponent();
@@ -61,7 +64,28 @@ namespace G10Travel.Views
 
         private async Task getItemsForList(string id)
         {
-            lvMyLists.ItemsSource = await App.MobileService.InvokeApiAsync<List<Item>>("Item/GetItems", HttpMethod.Get, new Dictionary<string, string>() { { "listId", id } });
+            List<Item> items = await App.MobileService.InvokeApiAsync<List<Item>>("Item/GetItems", HttpMethod.Get, new Dictionary<string, string>() { { "listId", id } });
+
+            // de volgende 2 lijnen in commentaar zetten en hetgene in commentaar zet uit commentaar halen om die groepen te testen.
+            items = items.OrderBy(item => item.Type).ToList();
+            lvMyLists.ItemsSource = items;
+
+            /*
+            IEnumerable<ItemGroup> groups =
+                from item in items
+                group item by item.Type into itemGroup
+                select new ItemGroup(itemGroup)
+                {
+                    Type = itemGroup.Key
+                };
+            var cvs = CollectionViewSource;
+            cvs.Source = groups.ToList();
+         */
+        }
+        private class ItemGroup : ObservableCollection<Item>
+        {
+            public ItemGroup(IEnumerable<Item> items) : base(items) { }
+            public string Type { get; set; }
         }
         private async void btnAddListItem_Click(object sender, RoutedEventArgs e)
         {
@@ -75,23 +99,25 @@ namespace G10Travel.Views
             {
                 String name = d.GetItemName();
                 Category cat = d.GetCategory();
+                String type = d.GetItemType();
+
                 Item item;
                 if (Categories.Contains(cat))
                 {
-                    item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false, CategoryId = cat.Id };
-                } else
+                    item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false, CategoryId = cat.Id, Type = type };
+                }
+                else
                 {
                     await CategoryTable.InsertAsync(cat);
-                    item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false, CategoryId = cat.Id };
-                    
+                    item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false, CategoryId = cat.Id, Type = type };
+
                 }
                 await listItemTable.InsertAsync(item);
                 await getItemsForList(ListId);
             }
         }
-
         private async void CheckBox_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             Item item = (Item)((CheckBox)sender).DataContext;
             await listItemTable.UpdateAsync(item);
         }
