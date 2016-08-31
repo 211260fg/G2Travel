@@ -142,7 +142,7 @@ namespace G10Travel.Views
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+
         }
 
         private async void dtManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs e)
