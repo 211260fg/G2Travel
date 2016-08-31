@@ -29,6 +29,7 @@ namespace G10Travel.Views
     public sealed partial class ListDetailPage : Page
     {
         private IMobileServiceTable<Item> listItemTable = App.MobileService.GetTable<Item>();
+        private IEnumerable<Item> allItems;
         private string ListId;
         private ListItem listItem;
         private IMobileServiceTable<Category> CategoryTable = App.MobileService.GetTable<Category>();
@@ -66,7 +67,7 @@ namespace G10Travel.Views
 
         private async Task getItemsForList(string id)
         {
-            IEnumerable<Item> allItems = await App.MobileService.InvokeApiAsync<List<Item>>("Item/GetItems", HttpMethod.Get, new Dictionary<string, string>() { { "listId", id } });
+            allItems = await App.MobileService.InvokeApiAsync<List<Item>>("Item/GetItems", HttpMethod.Get, new Dictionary<string, string>() { { "listId", id } });
             List<Item> itemsToBring = new List<Item>();
             List<Item> tasks = new List<Item>(); ;
             foreach (Item item in allItems)
@@ -152,5 +153,17 @@ namespace G10Travel.Views
             //e.Request.Data.Properties.Description = "Already started packing for our trip to " + listItem.Location + "on " + listItem.startDate;
             //e.Request.Data.SetWebLink(new Uri("https://g9ts.azurewebsites.net/"));
         }
+
+        private void OnCheckBoxClicked(object sender, RoutedEventArgs e)
+        {
+            var currentCheckBoxItem = sender as CheckBox;
+
+            CheckBox cb = (CheckBox)sender;
+            Item item = cb.DataContext as Item;
+            item.ItemChecked = (bool) cb.IsChecked;
+            listItemTable.UpdateAsync(item);
+
+        }
+        
     }
 }

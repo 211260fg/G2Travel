@@ -24,11 +24,11 @@
             <RowDefinition Height="269*"/>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="474" VerticalAlignment="Top" Width="380" Margin="10,59.333,0,0" Grid.Row="2"/>
-        <Pivot x:Name="pivotList" Margin="0,-28,20,20" Title="List" d:LayoutOverrides="VerticalAlignment, LeftPosition, RightPosition, TopPosition, BottomPosition" Grid.RowSpan="3">
+        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="464" VerticalAlignment="Top" Width="380" Margin="10,69.333,0,0" Grid.Row="2"/>
+        <Pivot x:Name="pivotList" Margin="0,-11,20,20" Title="List" d:LayoutOverrides="VerticalAlignment, LeftPosition, RightPosition, TopPosition, BottomPosition" Grid.RowSpan="3">
             <PivotItem Header="Items" Margin="19,-146,18.667,-0.5">
 
-                <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Margin="0,185,0,10.333" Width="362">
+                <ListView x:Name="lvMyLists"  HorizontalAlignment="Left" Margin="0,150,0,10.667" Width="362">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapGrid Orientation="Horizontal" ItemWidth="400" />
@@ -39,8 +39,12 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20">
-                                <CheckBox IsChecked="{Binding ItemChecked}">
-                                    <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                <CheckBox IsChecked="{Binding ItemChecked}" Click="OnCheckBoxClicked" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                        <TextBlock Text=": " Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                        <TextBlock Text="{Binding Amount}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                    </StackPanel>
                                 </CheckBox>
                             </StackPanel>
                         </DataTemplate>
@@ -49,7 +53,7 @@
                 </ListView>
             </PivotItem>
             <PivotItem Header="Tasks" Margin="19,31,19,-0.333">
-                <ListView x:Name="lvMyTasks" Margin="0,21,-0.333,9.167" Grid.Row="2" d:LayoutOverrides="VerticalAlignment">
+                <ListView x:Name="lvMyTasks" Margin="0,-18,-0.333,9.167" Grid.Row="2" d:LayoutOverrides="VerticalAlignment">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapGrid Orientation="Horizontal" ItemWidth="400" />
@@ -60,8 +64,12 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20">
-                                <CheckBox IsChecked="{Binding ItemChecked}">
-                                    <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                <CheckBox IsChecked="{Binding ItemChecked}" Click="OnCheckBoxClicked" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                        <TextBlock Text=": " Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                        <TextBlock Text="{Binding Amount}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
+                                    </StackPanel>
                                 </CheckBox>
                             </StackPanel>
                         </DataTemplate>
