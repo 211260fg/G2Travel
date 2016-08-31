@@ -24,11 +24,7 @@
             <RowDefinition Height="269*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,18,0,17.833">
-            <TextBlock x:Name="ListName" Text="{Binding ListName}" Style="{StaticResource TitleTextBlockStyle}" Margin="18,0" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi" FontSize="26.667" FontWeight="Bold" Foreground="#FFFBF2B7"/>
-        </StackPanel>
-
-        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="472" VerticalAlignment="Top" Width="380" Margin="10,-0.333,0,0" Grid.Row="2"/>
+        <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Height="474" VerticalAlignment="Top" Width="380" Margin="10,59.333,0,0" Grid.Row="2"/>
         <Pivot x:Name="pivotList" Margin="0,-28,20,20" Title="List" d:LayoutOverrides="VerticalAlignment, LeftPosition, RightPosition, TopPosition, BottomPosition" Grid.RowSpan="3">
             <PivotItem Header="Items" Margin="19,-146,18.667,-0.5">
 
@@ -65,7 +61,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20">
                                 <CheckBox IsChecked="{Binding ItemChecked}">
-                                    <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding ItemName}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
                                 </CheckBox>
                             </StackPanel>
                         </DataTemplate>

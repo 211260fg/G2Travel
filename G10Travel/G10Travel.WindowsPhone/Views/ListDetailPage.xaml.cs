@@ -97,6 +97,21 @@ namespace G10Travel.Views
             //TODO juiste lijst gebruiken
             /*System.Collections.IEnumerable Categories = new List<string>(){
             "New Category", "Clothing", "Bathroom", "Utensils", "Camping", "Financial" };*/
+            /*List<Category> Categories = await CategoryTable.ToListAsync();
+            Categories.Insert(0, new Category { Name = "Add new Category" });
+
+            AddItemDialog d = new AddItemDialog(Categories);
+
+            await d.ShowAsync();
+
+            if (d.IsResultOK())
+            {
+                String name = d.GetItemName();
+                Item item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false };
+                await listItemTable.InsertAsync(item);
+                await getItemsForList(ListId);
+            }*/
+
             List<Category> Categories = await CategoryTable.ToListAsync();
             Categories.Insert(0, new Category { Name = "Add new Category" });
 
@@ -114,10 +129,10 @@ namespace G10Travel.Views
                 {
                     await CategoryTable.InsertAsync(cat);
                 }
-                Item item = new Item { ItemName = name, CategoryId = cat.Id, Type = type };
+                Item item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false, CategoryId = cat.Id, Type = type };
+                await listItemTable.InsertAsync(item);
                 await getItemsForList(ListId);
             }
-
         }
 
         private void btnShare_Click(object sender, RoutedEventArgs e)
