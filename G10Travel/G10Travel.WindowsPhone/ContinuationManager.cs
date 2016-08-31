@@ -51,35 +51,11 @@ public class ContinuationManager
 
         switch (args.Kind)
         {
-            case ActivationKind.PickFileContinuation:
-                var fileOpenPickerPage = rootFrame.Content as IFileOpenPickerContinuable;
-                if (fileOpenPickerPage != null)
-                {
-                    fileOpenPickerPage.ContinueFileOpenPicker(args as FileOpenPickerContinuationEventArgs);
-                }
-                break;
-
-            case ActivationKind.PickSaveFileContinuation:
-                var fileSavePickerPage = rootFrame.Content as IFileSavePickerContinuable;
-                if (fileSavePickerPage != null)
-                {
-                    fileSavePickerPage.ContinueFileSavePicker(args as FileSavePickerContinuationEventArgs);
-                }
-                break;
-
-            case ActivationKind.PickFolderContinuation:
-                var folderPickerPage = rootFrame.Content as IFolderPickerContinuable;
-                if (folderPickerPage != null)
-                {
-                    folderPickerPage.ContinueFolderPicker(args as FolderPickerContinuationEventArgs);
-                }
-                break;
-
             case ActivationKind.WebAuthenticationBrokerContinuation:
-                var wabPage = rootFrame.Content as IWebAuthenticationContinuable;
-                if (wabPage != null)
+                var webPage = rootFrame.Content as IWebAuthenticationContinuable;
+                if (webPage != null)
                 {
-                    wabPage.ContinueWebAuthentication(args as WebAuthenticationBrokerContinuationEventArgs);
+                    webPage.ContinueWebAuthentication(args as WebAuthenticationBrokerContinuationEventArgs);
                 }
                 break;
         }
@@ -133,46 +109,6 @@ public class ContinuationManager
     }
 }
 
-/// <summary>
-/// Implement this interface if your page invokes the file open picker
-/// API.
-/// </summary>
-interface IFileOpenPickerContinuable
-{
-    /// <summary>
-    /// This method is invoked when the file open picker returns picked
-    /// files
-    /// </summary>
-    /// <param name="args">Activated event args object that contains returned files from file open picker</param>
-    void ContinueFileOpenPicker(FileOpenPickerContinuationEventArgs args);
-}
-
-/// <summary>
-/// Implement this interface if your page invokes the file save picker
-/// API
-/// </summary>
-interface IFileSavePickerContinuable
-{
-    /// <summary>
-    /// This method is invoked when the file save picker returns saved
-    /// files
-    /// </summary>
-    /// <param name="args">Activated event args object that contains returned file from file save picker</param>
-    void ContinueFileSavePicker(FileSavePickerContinuationEventArgs args);
-}
-
-/// <summary>
-/// Implement this interface if your page invokes the folder picker API
-/// </summary>
-interface IFolderPickerContinuable
-{
-    /// <summary>
-    /// This method is invoked when the folder picker returns the picked
-    /// folder
-    /// </summary>
-    /// <param name="args">Activated event args object that contains returned folder from folder picker</param>
-    void ContinueFolderPicker(FolderPickerContinuationEventArgs args);
-}
 
 /// <summary>
 /// Implement this interface if your page invokes the web authentication

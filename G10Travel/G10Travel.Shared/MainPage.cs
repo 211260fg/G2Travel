@@ -11,6 +11,7 @@ using G10Travel.Views;
 using Windows.Security.Authentication.Web;
 using Facebook;
 using System.Diagnostics;
+using G10Travel.Requests;
 
 // To add offline sync support, add the NuGet package Microsoft.WindowsAzure.MobileServices.SQLiteStore
 // to your project. Then, uncomment the lines marked // offline sync
@@ -55,6 +56,19 @@ namespace G10Travel
        });
             this.user = user;
             return await AuthenticateAsync(username, password);
+        }
+
+        private async Task<MobileServiceUser> LoginFacebookAsync(String name, String id)
+        {
+            var user = await App.MobileService
+       .InvokeApiAsync<FacebookRequest, MobileServiceUser>(
+       "CustomFacebook", new FacebookRequest()
+       {
+           name = name,
+           id = id
+       });
+            this.user = user;
+            return user;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

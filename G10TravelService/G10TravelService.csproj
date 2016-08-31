@@ -212,6 +212,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustomFacebookController.cs" />
     <Compile Include="Controllers\CustomLoginController.cs" />
     <Compile Include="Controllers\CustomLoginResult.cs" />
     <Compile Include="Controllers\CustomRegistrationController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="DataObjects\Category.cs" />
     <Compile Include="DataObjects\Item.cs" />
     <Compile Include="Requests\ListItemRequest.cs" />
+    <Compile Include="Requests\LoginFacebookRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\RegistrationRequest.cs" />
     <Compile Include="Controllers\TodoItemController.cs" />

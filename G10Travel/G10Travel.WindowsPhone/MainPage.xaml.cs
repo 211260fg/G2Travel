@@ -5,15 +5,54 @@ using G10Travel.Views;
 using Windows.Security.Authentication.Web;
 using Facebook;
 using System.Diagnostics;
+using Windows.ApplicationModel.Activation;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace G10Travel
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, IWebAuthenticationContinuable
     {
+        private string AccessToken { get; set; }
+        private DateTime TokenExpiry { get; set; }
 
         public MainPage()
         {
             checkIfLoggedIn();
+        }
+
+        public async void ContinueWebAuthentication(WebAuthenticationBrokerContinuationEventArgs args)
+        {
+            await ParseAuthenticationResult(args.WebAuthenticationResult);
+        }
+
+        public async Task ParseAuthenticationResult(WebAuthenticationResult result)
+        {
+            switch (result.ResponseStatus)
+            {
+                case WebAuthenticationStatus.ErrorHttp:
+                    Debug.WriteLine("Error");
+                    break;
+                case WebAuthenticationStatus.Success:
+                    var pattern = string.Format("{0}#access_token={1}&expires_in={2}", WebAuthenticationBroker.GetCurrentApplicationCallbackUri(), "(?<access_token>.+)", "(?<expires_in>.+)");
+                    var match = Regex.Match(result.ResponseData, pattern);
+
+                    var access_token = match.Groups["access_token"];
+                    var expires_in = match.Groups["expires_in"];
+
+                    AccessToken = access_token.Value;
+                    TokenExpiry = DateTime.Now.AddSeconds(double.Parse(expires_in.Value));
+                    FacebookClient client = new FacebookClient(AccessToken);
+                    dynamic user = await client.GetTaskAsync("me");
+                    App.MobileService.CurrentUser = await LoginFacebookAsync(user.name, user.id);
+                    Frame.Navigate(typeof(HomePage));
+                    break;
+                case WebAuthenticationStatus.UserCancel:
+                    Debug.WriteLine("Operation aborted");
+                    break;
+                default:
+                    break;
+            }
         }
 
 
@@ -123,15 +162,19 @@ namespace G10Travel
             //Facebook permissions
             String scope = "public_profile, email";
 
-            //var redirectUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri().ToString();
-            String redirectUri = "https://g9ts.azurewebsites.net";
+            var redirectUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri().ToString();
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = clientId,
+                redirect_uri = redirectUri,
+                response_type = "token",
+                scope = scope
+            });
 
-            String FacebookURL = "https://www.facebook.com/dialog/oauth?client_id=" + Uri.EscapeDataString(clientId) + "&redirect_uri=" + Uri.EscapeDataString(redirectUri) + "&scope=" + Uri.EscapeDataString(scope) + "&display=popup&response_type=token";
-
-            Uri startUri = new Uri(FacebookURL);
-            //Uri startUri = loginUrl;
+            Uri startUri = loginUrl;
             Uri endUri = new Uri(redirectUri, UriKind.Absolute);
-
+            
             WebAuthenticationBroker.AuthenticateAndContinue(startUri, endUri, null, WebAuthenticationOptions.None);
         }
     }

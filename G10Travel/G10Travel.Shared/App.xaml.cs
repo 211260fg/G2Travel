@@ -1,9 +1,11 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
+﻿using G10Travel.Views;
+using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -139,7 +141,6 @@ namespace G10Travel
 #if WINDOWS_PHONE_APP
             if (args.Kind == ActivationKind.WebAuthenticationBrokerContinuation)
             {
-
                 var continuationEventArgs = args as IContinuationActivatedEventArgs;
                 if (continuationEventArgs != null)
                 {
@@ -147,14 +148,10 @@ namespace G10Travel
                     ContinuationManager.MarkAsStale();
                 }
 
-                // Completes the sign-in process started by LoginAsync.
-                // Change 'MobileService' to the name of your MobileServiceClient instance. 
-                //App.MobileService.LoginComplete(args as WebAuthenticationBrokerContinuationEventArgs);
             }
-#endif
-
-            base.OnActivated(args);
         }
+#endif
+        
 
 #if WINDOWS_PHONE_APP
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
