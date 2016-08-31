@@ -85,6 +85,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ContinuationManager.cs" />
+    <Compile Include="Requests\FacebookRequest.cs" />
     <Compile Include="Requests\ListPostRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="MainPage.xaml.cs">
