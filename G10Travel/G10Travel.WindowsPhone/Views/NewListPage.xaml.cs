@@ -137,12 +137,12 @@ namespace G10Travel.Views
                 String name = d.GetItemName();
                 Category cat = d.GetCategory();
                 String type = d.GetItemType();
-                double amount = d.GetAmount();
+                int amount = d.GetAmount();
                 if (!Categories.Contains(cat))
                 {
                     await CategoryTable.InsertAsync(cat);
                 }
-                Item item = new Item { ItemName = name, CategoryId = cat.Id, Type = type };
+                Item item = new Item { ItemName = name, CategoryId = cat.Id, Type = type, Amount=amount};
                 lvItemList.Items.Add(item);
             }
         }

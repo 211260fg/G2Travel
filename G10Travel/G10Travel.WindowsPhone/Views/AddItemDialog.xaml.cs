@@ -80,12 +80,12 @@ namespace G10Travel.Views
             }
         }
 
-        public double GetAmount()
+        public int GetAmount()
         {
             if (string.IsNullOrEmpty(tbAmount.Text))
                 return 1;
 
-            return Double.Parse(tbAmount.Text);
+            return Int32.Parse(tbAmount.Text);
         }
 
         public Boolean IsResultOK()

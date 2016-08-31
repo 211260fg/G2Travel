@@ -23,6 +23,9 @@ namespace G10Travel.DataModel
         [JsonProperty(PropertyName = "categoryid")]
         public string CategoryId { get; set; }
 
+        [JsonProperty(PropertyName = "amount")]
+        public int Amount { get; set; }
+
         public override string ToString()
         {
             return System.String.Format(ItemName);
