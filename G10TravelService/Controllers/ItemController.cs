@@ -63,5 +63,20 @@ namespace G10TravelService.Controllers
             return GetAllItems().Where(l => l.ListItemId.Contains(listId)).AsQueryable();
         }
 
+        [HttpPost, Route("api/Item/AmountUp")]
+        public SingleResult<Item> amountUp(string itemId)
+        {
+            Item item = Lookup(itemId).Queryable.First();
+            item.Amount++;
+            return Lookup(itemId);
+        }
+
+        [HttpPost, Route("api/Item/AmountDown")]
+        public SingleResult<Item> amountDown(string itemId)
+        {
+            Item item = Lookup(itemId).Queryable.First();
+            item.Amount--;
+            return Lookup(itemId);
+        }
     }
 }
