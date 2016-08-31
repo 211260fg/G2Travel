@@ -107,10 +107,17 @@ namespace G10Travel.Views
             if (d.IsResultOK())
             {
                 String name = d.GetItemName();
-                Item item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false };
-                await listItemTable.InsertAsync(item);
+                Category cat = d.GetCategory();
+                String type = d.GetItemType();
+                double amount = d.GetAmount();
+                if (!Categories.Contains(cat))
+                {
+                    await CategoryTable.InsertAsync(cat);
+                }
+                Item item = new Item { ItemName = name, CategoryId = cat.Id, Type = type };
                 await getItemsForList(ListId);
             }
+
         }
 
         private void btnShare_Click(object sender, RoutedEventArgs e)

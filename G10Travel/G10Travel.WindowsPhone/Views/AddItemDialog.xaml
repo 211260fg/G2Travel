@@ -13,10 +13,13 @@
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBox x:Name="itemName" Header="Item name:"/>
-        <CheckBox x:Name="task" Content="Task" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBox x:Name="itemName" PlaceholderText="Item name" Header="Item name:"/>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <ComboBox x:Name="cbCategory" PlaceholderText="Category" HorizontalAlignment="Left" Width="356" SelectionChanged="OnCbCategorySelectionChanged"/>
+            <CheckBox x:Name="task" Content="Task" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="135" d:LayoutOverrides="LeftMargin, RightMargin"/>
+            <TextBox x:Name="tbAmount" PlaceholderText="Amount" InputScope="Number" HorizontalAlignment="Right" Height="35" Margin="0,0,33.667,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="195"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ComboBox x:Name="cbCategory" PlaceholderText="Category" HorizontalAlignment="Left" Width="361" SelectionChanged="OnCbCategorySelectionChanged"/>
             <TextBox x:Name="tbNewCategory" PlaceholderText="Category name" HorizontalAlignment="Right" Height="39" Margin="10,0,9.667,0" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Width="206" Visibility="Collapsed"/>
         </StackPanel>
         <TextBlock x:Name="errorTextBlock" Style="{StaticResource ControlContextualInfoTextBlockStyle}" />

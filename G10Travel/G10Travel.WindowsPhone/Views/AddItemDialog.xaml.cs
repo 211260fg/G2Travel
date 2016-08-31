@@ -80,6 +80,14 @@ namespace G10Travel.Views
             }
         }
 
+        public double GetAmount()
+        {
+            if (string.IsNullOrEmpty(tbAmount.Text))
+                return 1;
+
+            return Double.Parse(tbAmount.Text);
+        }
+
         public Boolean IsResultOK()
         {
             return ResultOK;
