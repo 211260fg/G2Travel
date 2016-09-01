@@ -22,10 +22,8 @@
             <ComboBox x:Name="cbCategory" PlaceholderText="Category" HorizontalAlignment="Left" Width="361" SelectionChanged="OnCbCategorySelectionChanged"/>
             <TextBox x:Name="tbNewCategory" PlaceholderText="Category name" HorizontalAlignment="Right" Height="39" Margin="10,0,9.667,0" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Width="206" Visibility="Collapsed"/>
         </StackPanel>
+
         <TextBlock x:Name="errorTextBlock" Style="{StaticResource ControlContextualInfoTextBlockStyle}" />
-
-
-
     </StackPanel>
 
 </ContentDialog>
