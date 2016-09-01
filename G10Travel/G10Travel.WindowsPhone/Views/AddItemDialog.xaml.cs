@@ -81,11 +81,16 @@ namespace G10Travel.Views
         }
 
         public int GetAmount()
-        {
-            if (string.IsNullOrEmpty(tbAmount.Text))
-                return 1;
+        {try
+            {
+                if (string.IsNullOrEmpty(tbAmount.Text))
+                    return 1;
 
-            return Int32.Parse(tbAmount.Text);
+                return Int32.Parse(tbAmount.Text);
+            }catch(FormatException fe)
+            {
+                return 1;
+            }
         }
 
         public Boolean IsResultOK()

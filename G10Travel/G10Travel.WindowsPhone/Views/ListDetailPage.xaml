@@ -12,7 +12,8 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add" IsCompact="True" Label="Add" Click="btnAddListItem_Click" />
                 <AppBarButton Icon="ReShare" IsCompact="True" Label="Share" Click="btnShare_Click"/>
-                <AppBarButton Icon="Edit" IsCompact="True" Label="Edit" Click="btnEdit_Click"/>
+                <AppBarButton Icon="Delete" IsCompact="True" Label="Delete" Click="btnDelete_Click"/>
+                <!--<AppBarButton Icon="Edit" IsCompact="True" Label="Edit" Click="btnEdit_Click"/>-->
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

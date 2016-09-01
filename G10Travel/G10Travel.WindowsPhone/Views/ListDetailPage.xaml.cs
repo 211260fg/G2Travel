@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,7 +29,8 @@ namespace G10Travel.Views
     /// </summary>
     public sealed partial class ListDetailPage : Page
     {
-        private IMobileServiceTable<Item> listItemTable = App.MobileService.GetTable<Item>();
+        private IMobileServiceTable<Item> ItemTable = App.MobileService.GetTable<Item>();
+        private IMobileServiceTable<ListItem> ListItemTable = App.MobileService.GetTable<ListItem>();
         private IEnumerable<Item> allItems;
         private string ListId;
         private ListItem listItem;
@@ -131,7 +133,7 @@ namespace G10Travel.Views
                     await CategoryTable.InsertAsync(cat);
                 }
                 Item item = new Item { ItemName = name, ListItemId = ListId, ItemChecked = false, CategoryId = cat.Id, Type = type, Amount = amount };
-                await listItemTable.InsertAsync(item);
+                await ItemTable.InsertAsync(item);
                 await getItemsForList(ListId);
             }
         }
@@ -144,6 +146,52 @@ namespace G10Travel.Views
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+            /*MessageDialog msg = new MessageDialog("Are you sure you want to delete this list?", "Delete "+listItem.Name);
+
+            //Commands
+            msg.Commands.Add(new UICommand("OK", new UICommandInvokedHandler(CommandHandlers)));
+            msg.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(CommandHandlers)));
+
+            await msg.ShowAsync();*/
+            //await ListItemTable.DeleteAsync(listItem);
+            /*Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame != null && rootFrame.CanGoBack)
+            {
+                rootFrame.GoBack();
+            }
+            else
+            {
+                Frame.Navigate(typeof(HomePage));
+            }*/
+            //end.
+        }
+
+        public async void CommandHandlers(IUICommand commandLabel)
+        {
+            var Actions = commandLabel.Label;
+            switch (Actions)
+            {
+                case "OK":
+                    await ListItemTable.DeleteAsync(listItem);
+                    /*Frame rootFrame = Window.Current.Content as Frame;
+
+                    if (rootFrame != null && rootFrame.CanGoBack)
+                    {
+                        rootFrame.GoBack();
+                    }
+                    else
+                    {
+                        Frame.Navigate(typeof(HomePage));
+                    }*/
+                    break;
+                case "Cancel":
+                    break;
+            }
         }
 
         private async void dtManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs e)
@@ -161,9 +209,10 @@ namespace G10Travel.Views
             CheckBox cb = (CheckBox)sender;
             Item item = cb.DataContext as Item;
             item.ItemChecked = (bool) cb.IsChecked;
-            listItemTable.UpdateAsync(item);
+            ItemTable.UpdateAsync(item);
 
         }
+
         
     }
 }
