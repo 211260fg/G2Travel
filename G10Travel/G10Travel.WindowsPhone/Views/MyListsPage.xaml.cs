@@ -71,6 +71,16 @@ namespace G10Travel.Views
             frame.Navigate(typeof(ListDetailPage), selectedItem);
         }
 
+        private async void btnDelteList_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button button = (Button)sender;
+            ListItem li = button.DataContext as ListItem;
+            await listItemTable.DeleteAsync(li);
+            
+            
+        }
+
         /*void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             if (Frame.CanGoBack)

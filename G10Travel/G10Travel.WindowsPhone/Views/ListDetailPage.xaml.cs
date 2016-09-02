@@ -157,17 +157,9 @@ namespace G10Travel.Views
             msg.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(CommandHandlers)));
 
             await msg.ShowAsync();*/
-            //await ListItemTable.DeleteAsync(listItem);
-            /*Frame rootFrame = Window.Current.Content as Frame;
+            await ListItemTable.DeleteAsync(listItem);
+            //await App.MobileService.InvokeApiAsync<List<ListItem>>("ListItem/DeleteListIte", HttpMethod.Delete, new Dictionary<string, string>() { { "listId", listItem.Id } });
 
-            if (rootFrame != null && rootFrame.CanGoBack)
-            {
-                rootFrame.GoBack();
-            }
-            else
-            {
-                Frame.Navigate(typeof(HomePage));
-            }*/
             //end.
         }
 
@@ -178,7 +170,7 @@ namespace G10Travel.Views
             {
                 case "OK":
                     await ListItemTable.DeleteAsync(listItem);
-                    /*Frame rootFrame = Window.Current.Content as Frame;
+                    Frame rootFrame = Window.Current.Content as Frame;
 
                     if (rootFrame != null && rootFrame.CanGoBack)
                     {
@@ -187,7 +179,7 @@ namespace G10Travel.Views
                     else
                     {
                         Frame.Navigate(typeof(HomePage));
-                    }*/
+                    }
                     break;
                 case "Cancel":
                     break;
