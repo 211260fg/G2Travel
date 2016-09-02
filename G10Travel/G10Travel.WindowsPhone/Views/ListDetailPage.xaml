@@ -47,6 +47,13 @@
                                         <TextBlock Text="{Binding Amount}" Style="{ThemeResource ListViewItemTextBlockStyle}" Margin="10, -10, 0, 0"/>
                                     </StackPanel>
                                 </CheckBox>
+                                <StackPanel Orientation="Vertical" Margin="20,10,0,0">
+                                    <!--<Button x:Name="btnIncreaseAmount" Content="^"/>
+                                    <Button x:Name="btnDecreaseAmount" Content="v"/>
+                                    <Button x:Name="btnIncreaseAmount" Content="^" FontSize="10" VerticalAlignment="Stretch" Background="#FF1F1F1F" Foreground="White" MinWidth="20" MaxWidth="21" MaxHeight="21" MinHeight="20" RenderTransformOrigin="0.561,0.544" Style="{StaticResource RoundButtonStyle}" d:LayoutOverrides="TopPosition, BottomPosition" BorderBrush="White"/>
+                                    <Button x:Name="btnDecreaseAmount" Content="v" FontSize="10" VerticalAlignment="Stretch" Background="#FF1F1F1F" Foreground="White" MinWidth="20" MaxWidth="21" MaxHeight="21" MinHeight="20" RenderTransformOrigin="0.561,0.544" Style="{StaticResource RoundButtonStyle}" d:LayoutOverrides="TopPosition, BottomPosition" BorderBrush="White"/>
+                                    -->
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -79,6 +86,7 @@
                 </ListView>
             </PivotItem>
         </Pivot>
+        
         <!--
         <ListView x:Name="lvMyTasks" Margin="10,32.833,9,10" Grid.Row="2" d:LayoutOverrides="VerticalAlignment, LeftPosition, RightPosition, TopPosition, BottomPosition" Background="Black">
             <ListView.ItemsPanel>

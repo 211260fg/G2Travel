@@ -41,7 +41,7 @@
             <TextBlock x:Name="textBlock" Margin="46,215,291,0" TextWrapping="Wrap" Text="Items:" VerticalAlignment="Top" FontSize="18.667" HorizontalAlignment="Center" FontFamily="Arial" Width="53" Height="25"/>
 
             <ListBox x:Name="lvItemList" Margin="46,250,46,110" BorderBrush="White" BorderThickness="2" RenderTransformOrigin="0.486,0.427" Background="#CCFFFFFF"/>
-            <Button x:Name="btnAddListItem" Content="M12.126984,0L19.872009,0 19.872009,12.128 32,12.128 32,19.872999 19.872009,19.872999 19.872009,31.999 12.126984,31.999 12.126984,19.872999 0,19.872999 0,12.128 12.126984,12.128z" FontSize="24" VerticalAlignment="Stretch" Background="#FF1F1F1F" Foreground="White" MinWidth="10" MinHeight="10" RenderTransformOrigin="0.561,0.544" Margin="290,382,54,106" HorizontalAlignment="Stretch" Click="btnAddListItem_Click" Style="{StaticResource RoundButtonStyle}" d:LayoutOverrides="TopPosition, BottomPosition" BorderBrush="White"/>
+            <Button x:Name="btnAddListItem" Content="M12.126984,0L19.872009,0 19.872009,12.128 32,12.128 32,19.872999 19.872009,19.872999 19.872009,31.999 12.126984,31.999 12.126984,19.872999 0,19.872999 0,12.128 12.126984,12.128z" FontSize="24" VerticalAlignment="Stretch" Background="#FF1F1F1F" Foreground="White" MinWidth="10" MinHeight="10" RenderTransformOrigin="0.561,0.544" Margin="292,393,52,115" HorizontalAlignment="Stretch" Click="btnAddListItem_Click" Style="{StaticResource RoundButtonStyle}" BorderBrush="White"/>
 
             <TextBlock x:Name="tbError" HorizontalAlignment="Center" Height="25" Margin="72,461,85,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233"/>
         </Grid>
